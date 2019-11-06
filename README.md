@@ -1,4 +1,8 @@
 # template_escape
+<p align="center">
+   <img src="https://cdn.eso.org/images/large/ann18084a.jpg" width="640" height="453"/>
+</p>
+
 A simple example project to be used as a template.
 
 It shows the **basic documentation** a project should include, following the [opensource guide](https://opensource.guide/starting-a-project/):

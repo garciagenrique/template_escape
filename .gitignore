@@ -1,2 +1,17 @@
-__pycache__
 .pytest_cache
+
+# Compiled files
+__pycache__
+
+# Packages/installer info
+*.egg
+*.eggs
+*.egg-info
+dist
+build
+
+# Mac OSX
+.DS_Store
+
+# Pycharm editor project files
+.idea

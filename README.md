@@ -16,7 +16,8 @@ It shows the **basic documentation** a project should include, following the [op
 * The structure of the repository.
 
 
-* It would be highly suitable to include too:
+
+- It would be highly suitable to include too:
    - A setup file as well as the basic commands to install the library (see below).
    - A .gitignore file.
    - Unitary and integration tests.

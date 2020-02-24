@@ -1,0 +1,18 @@
+language: python
+
+python:
+  - 3.6
+  - 3.7
+
+os:
+  - linux
+  # - osx # have a look to https://github.com/travis-ci/travis-ci/issues/9744#issuecomment-426916308
+
+before_install:
+  - git fetch --tags
+
+install:
+  - python setup.py install
+
+script:
+  - pytest template_project_escape

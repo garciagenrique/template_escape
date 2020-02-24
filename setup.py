@@ -1,11 +1,11 @@
 import setuptools
-import template_escape
+import template_project_escape
 
 # Define entry points for command-line scripts
 entry_points = {'console_scripts': ['square_number = template_project_escape.code_template_escape:main']}
 
 setuptools.setup(name='template_project_escape',
-                 version=template_escape.__version__,
+                 version=template_project_escape.__version__,
                  description="Template project for the ESCAPE repository",
                  packages=setuptools.find_packages(),
                  install_requires=['numpy'],

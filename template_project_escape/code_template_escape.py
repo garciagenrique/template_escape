@@ -32,7 +32,7 @@ def main():
     parser.add_argument('--input_number', '-i',
                         type=float,
                         dest='input',
-                        help='Input number to square. Default = -7',
+                        help='Input number to square. Default = -7.',
                         default=-7.
                         )
 

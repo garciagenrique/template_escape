@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import setuptools
 import template_project_escape
 

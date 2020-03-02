@@ -1,4 +1,4 @@
-# template_project_escape [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3572655.svg)](https://doi.org/10.5281/zenodo.3572655)
+# template_project_escape [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3572655.svg)](https://doi.org/10.5281/zenodo.3572655) [![Build Status](https://travis-ci.com/garciagenrique/template_project_escape.svg?branch=master)](https://travis-ci.com/garciagenrique/template_project_escape)
 
 
 <p align="center">

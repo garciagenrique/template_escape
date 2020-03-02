@@ -1,0 +1,8 @@
+name: escape_template
+channels:
+  - conda-forge
+dependencies:
+  - numpy
+  - python>=3.6
+  - setuptools
+

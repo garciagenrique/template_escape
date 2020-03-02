@@ -1,35 +1,43 @@
 Bootstrap: docker
-From: continuumio/miniconda3
+From: ubuntu:latest
 
 %files
         env_template_escape.yml
 
-%environment
-        # export LC_ALL=C
-        PATH=/opt/conda/envs/$(head -1 env_template_escape.yml | cut -d' ' -f2)/bin:$PATH
-
 %post
-        # apt-get -y update
-        # apt-fet clean
+        apt-get -y update
+        apt-get -y install git
+        apt-get -y install wget
+        apt-get clean
 
-        echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc
-        echo "source activate $(head -1 env_template_escape.yml | cut -d' ' -f2)" >> ~/.bashrc
-        /opt/conda/bin/conda env create -f env_template_escape.yml
-        git clone https://gitlab.in2p3.fr/escape2020/escape/template_project_escape.git
-        #git clone https://github.com/garciagenrique/template_project_escape.git
-        cd template_project_escape
-        git fetch --tags
-        tag=$(git describe --tags `git rev-list --tags --max-count=1`)
-        git checkout $tag -b master_tag_$tag
+        wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+        bash Miniconda3-latest-Linux-x86_64.sh -b -p /opt/conda
+        rm Miniconda3-latest-Linux-x86_64.sh
         export PATH="/opt/conda/bin:$PATH"
-        #/opt/conda/bin/conda init bash
-        /opt/conda/bin/conda activate escape_template
+	    export LD_LIBRARY_PATH="/opt/conda/bin:$LD_LIBRARY_PATH"
+	    echo ". activate escape_template" >> /etc/bash.bashrc
+
+        /opt/conda/bin/conda env create -f env_template_escape.yml
+        . activate escape_template
+
+	    git clone https://gitlab.in2p3.fr/escape2020/escape/template_project_escape.git
+        cd template_project_escape
+	    git pull origin
+#        git fetch --tags
+#        tag=$(git describe --tags `git rev-list --tags --max-count=1`)
+#        git checkout $tag -b master_tag_$tag
+        git checkout singularity_container
         python setup.py install
-        #source ~/.bashrc; conda activate escape_template; python setup.py install
 
 %runscript
+        . /opt/conda/etc/profile.d/conda.sh
         source activate escape_template
         square_number -i $1
 
 %help
         This is a template container used to illustrate a simple singularity recipe.
+         - It downloads and install miniconda3, git and wget.
+         - It clones and install a git repository.
+
+         To run the image :
+         >> singularity run escape_tempalte.simg -7

@@ -4,4 +4,3 @@ channels:
 dependencies:
   - numpy
   - python>=3.6
-  - setuptools

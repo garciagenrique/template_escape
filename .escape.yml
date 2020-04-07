@@ -1,0 +1,31 @@
+# Metadata version - do not change
+metadata-version: 0.1
+
+# Mandatory entries
+title: template_project_escape
+authors:
+  - Enrique Garcia
+  - Thomas Vuillaume
+contact:
+  - name: Enrique Garcia
+  - email: garcia@lapp.in2p3.fr
+license: MIT
+url: https://gitlab.in2p3.fr/escape2020/escape/template_project_escape
+description: A template project to provide software to ESCAPE.
+
+# Optional entries
+doi: 10.5281/zenodo.3572655
+keywords: null
+type: source
+grant: 824064
+language: python
+hardware:
+  - machine: local
+
+dependencies:
+  - python>=3.6
+  - numpy
+
+os:
+  - 'linux'
+  - 'osx-64'

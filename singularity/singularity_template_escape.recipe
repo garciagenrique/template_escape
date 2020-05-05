@@ -29,6 +29,8 @@ From: ubuntu:latest
         git checkout $tag -b master_tag_$tag
         python setup.py install
 
+        conda clean -a
+
 %runscript
         . /opt/conda/etc/profile.d/conda.sh; conda activate escape_template; square_number -i $1
 

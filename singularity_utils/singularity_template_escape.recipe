@@ -2,7 +2,7 @@ Bootstrap: docker
 From: ubuntu:latest
 
 %files
-        env_template_escape.yml
+        environment.yml
 
 %environment
         export LC_ALL=C
@@ -19,7 +19,7 @@ From: ubuntu:latest
         rm Miniconda3-latest-Linux-x86_64.sh
 
         . /opt/conda/etc/profile.d/conda.sh
-        conda env create -f env_template_escape.yml
+        conda env create -f environment.yml
         conda activate escape_template
 
         git clone https://gitlab.in2p3.fr/escape2020/escape/template_project_escape.git

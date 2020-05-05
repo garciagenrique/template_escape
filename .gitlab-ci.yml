@@ -1,0 +1,47 @@
+stages:
+ - build
+ - deploy
+
+build_image:
+    stage: build
+    image: singularityware/singularity:gitlab-2.6
+    script:
+        # step 1. build the container!
+        - /bin/bash .gitlabci/build.sh Singularity
+
+        - mkdir -p build && cp *.simg build
+        - mkdir -p build && cp Singularity* build
+
+        # You can add any other sregistry push commands here, and specify a client
+        # (and make sure your define the encrypted environment credentials in gitlab
+        # to push to your storage locations of choice.
+        # Have a look at https://gitlab.com/singularityhub/gitlab-ci/-/blob/master/.gitlab-ci.yml. Ex:
+        #- /bin/bash build.sh --uri collection/container --cli registry Singularity
+
+    artifacts:
+        paths:
+            - build/Singularity.simg
+            - build/Singularity
+
+deploy_zenodo:
+    stage: deploy
+    script:
+        # Step 2. Install dependencies in the image and upload the files to zenodo
+      - apt update
+      - apt-get install python3
+      - apt -y install python3-pip
+
+      - pip3 --version
+      - pip3 install requests
+      - python3 --version  # It is python3.5 - The image is a Debian GNU/Linux 9 (stretch).
+
+      # For testing purposes the receipt of the Singularity image - small size - is uploaded to sandobox.zenodo.org
+      - python3 .zenodoci/upload_new_deposit.py -i build/Singularity --token $SANDBOX_ZENODO_TOKEN
+
+      # Example for the upload of a new version. The deposit id of the entry to be `new_versioned` MUST be provided.
+      # - python3 .zenodoci/upload_new_version_of_deposit.py -i build/Singularity --token $SANDBOX_ZENODO_TOKEN -id ####
+
+    artifacts:
+        paths:
+            - build/Singularity.simg
+            - build/Singularity

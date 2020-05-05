@@ -1,0 +1,20 @@
+{
+    "metadata": {
+        "title": "template repository ESCAPE",
+        "upload_type": "software",
+        "description": "A template repository for the ESCAPE project",
+        "creators": [{"name": "Garcia, Enrique",
+                      "affiliation": "LAPP, CNRS"},
+                     {"name": "Vuillaume, Thomas",
+                       "affiliation": "LAPP, CNRS",
+                       "orcid": "0000-0002-5686-2078"}],
+        "access_right": "open",
+        "license": "AGPL-3.0",
+        "communities": [{"identifier": "escape2020"}],
+        "keywords": [],
+        "language": "eng",
+        "notes": "(This will appear as a subtitle)",
+        "version": "2.0",
+        "grants": [{"id": "10.13039/501100000780::824064"}]
+    }
+}

@@ -27,9 +27,9 @@ deploy_zenodo:
     stage: deploy
     script:
         # Step 2. Install dependencies in the image and upload the files to zenodo
-      - apt-get -y update
-      - apt-get install python3
-      - apt -y install python3-pip
+#      - apt-get -y update
+#      - apt-get install python3
+#      - apt -y install python3-pip
 
       - pip3 --version
       - pip3 install requests

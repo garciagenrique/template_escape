@@ -18,4 +18,4 @@ setuptools.setup(name='template_project_escape',
                  license='Open Source. MIT license. See LICENSE file.',
                  url='https://gitlab.in2p3.fr/escape2020/escape/template_project_escape',
                  entry_points=entry_points,
-                 )
+                 )  

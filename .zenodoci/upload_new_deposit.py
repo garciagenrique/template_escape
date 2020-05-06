@@ -2,7 +2,7 @@
 import os
 import json
 import argparse
-from .zenodolib import ZenodoHandler
+from zenodolib import ZenodoHandler
 
 
 parser = argparse.ArgumentParser(description="Upload new deposit entry to zenodo")

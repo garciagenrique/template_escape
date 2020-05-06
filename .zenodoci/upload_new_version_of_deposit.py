@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import argparse
-from .zenodolib import ZenodoHandler
+from zenodolib import ZenodoHandler
 
 parser = argparse.ArgumentParser(description="Upload a new version of an existing deposit to zenodo")
 

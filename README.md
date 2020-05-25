@@ -1,7 +1,7 @@
 # template_project_escape 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3572655.svg)](https://doi.org/10.5281/zenodo.3572655) 
 [![Build Status](https://gitlab.in2p3.fr/escape2020/escape/template_project_escape/badges/master/pipeline.svg)](
-https://gitlab.in2p3.fr/escape2020/escape/template_project_escape)
+https://gitlab.in2p3.fr/escape2020/escape/template_project_escape/pipelines/)
 [![Build Status](https://travis-ci.com/garciagenrique/template_project_escape.svg?branch=master)](
 https://travis-ci.com/garciagenrique/template_project_escape)
 

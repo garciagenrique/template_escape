@@ -1,6 +1,6 @@
 """
-Code from https://github.com/SiLeBAT/zenodo-python
-stayed at commit
+This code is part of https://github.com/SiLeBAT/zenodo-python,
+stayed at commit 513b982c7bf949a96f8208e462c89475bc01d124
 
 Copyright (c) 2015 Federal Institute for Risk Assessment (BfR), Germany
 
@@ -16,9 +16,6 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-Contributors:
-    Department Biological Safety - BfR
 """
 import enum
 import json

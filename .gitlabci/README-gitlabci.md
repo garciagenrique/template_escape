@@ -11,13 +11,13 @@ The source code contained in this folder is based on the following
 [gitlab-ci repository](https://gitlab.com/singularityhub/gitlab-ci). You can  find a very didactic **tutorial** of how 
 to implement this code [here](https://vsoch.github.io/2018/gitlab-singularity-ci/).
 
-Very summarised, this software (composed of the files within this directory **AND** the `gitlab-ci.yml` file in the 
+This software (composed of the files within this directory **AND** the `gitlab-ci.yml` file in the
 root directory) provide the necessary tools to:
  - Use a Singularity image stored in the SingularityHub to create a Singularity Container of your repository 
  (thus no need of having installed the Singularity program), and uploaded it directly to your GitLab repository.
  - The Singularity receipt must be provided, of course.
  - In case the container is too large (10 Gb total storage limit for a single GitLab project), you must pass 
- through a cloud service (various services examples are listed in the tutorial and the original repository). 
+ through a cloud service (various examples of different services are shown in the tutorial and the original repository). 
 
 ## License of the repository
 The license of the 'parent' repository is `BSD 3-Clause License` ("BSD License 2.0", "Revised BSD License", "New BSD 
@@ -58,15 +58,16 @@ If this is the case, each file (based on or modified from its original) MUST con
 > OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ### Specific case of the `template_project_repository`:
-The `template_project_repository` contains code from different projects. This project can contain versions of different 
-projects because:
- - Both parent projects are Open Source and their licenses are 
- [compatible](https://www.gnu.org/licenses/gpl-faq.html#WhatDoesCompatMean) (BSD 3-Clause and GPLv3).
- - However, the GNU General Public License v3 is 'copyleft', meaning that the project resulting in the use of another
- project with this license, MUST be licensed with the same license, i.e., GPLv3.
+The `template_project_repository` contains code from different projects. This 'mixing' can be done because:
+ - Both 'parent' projects are Open Source.
+ - Both licenses, `BSD 3-Clause` and `GPLv3`, are [compatible](
+ https://www.gnu.org/licenses/gpl-faq.html#WhatDoesCompatMean); this means that source code distributed with a BSD 
+ 3-Clause license can be included within a project with a GPLv3 license:
+    - Note however that the GNU General Public License v3 is 'copyleft', meaning that the resulting project from the use
+     of any code licensed with GPLv3, must be distributed with the same license, thus GPLv3.
  
-This is why the `template_project_repository` was re-licensed to GNU General Public License v 3.0, and each single 
-BSD-3 Clause file contains the original license.
+This are the reasons why the  `template_project_repository` is distributed with the GNU General Public License Version 
+3 and some files contain a BSD-3 Clause license.
 
-**PLEASE TAKE THE TIME TO CHECK AND VERIFY LICENSES AND THEIR COMPATIBILITY** 
+**PLEASE TAKE THE TIME TO CHECK AND VERIFY LICENSES AND THEIR COMPATIBILITIES** 
  

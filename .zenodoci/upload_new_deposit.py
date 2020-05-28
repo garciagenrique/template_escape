@@ -5,23 +5,23 @@ import argparse
 from zenodolib import ZenodoHandler
 
 
-parser = argparse.ArgumentParser(description="Upload new deposit entry to zenodo")
+parser = argparse.ArgumentParser(description="Upload new deposit entry to Zenodo")
 
 # Required arguments
 parser.add_argument('--input-file', '-i', type=str,
                     dest='input_file',
-                    help='Full path to the file to upload')
+                    help='Full path to the file to upload',
+                    required=True)
 
 parser.add_argument('--token', '-t', type=str,
                     dest='zenodo_token',
-                    help='Personal access token to Sandbox/zenodo')
+                    action='store_true',
+                    help='Personal access token to (sandbox)Zenodo',
+                    required=True)
 
 args = parser.parse_args()
 
 if __name__ == '__main__':
-    if not args.input_file:
-        print("No file declared ! Exiting. ")
-        exit(1)
 
     z = ZenodoHandler(access_token=args.zenodo_token,
                       test=True  # True for sandbox.zenodo.org !! False for zenodo.org
@@ -29,11 +29,13 @@ if __name__ == '__main__':
 
     # create empty deposit
     r = z.deposition_create()
-    deposition_id = r.json()['id']
-    doi = r.json()['metadata']['prereserve_doi']['doi']
     if r.status_code < 399:
+        deposition_id = r.json()['id']
+        doi = r.json()['metadata']['prereserve_doi']['doi']
         print("Status {}. New entry to zenodo created ! Deposition id {}".format(r.status_code,
                                                                                  deposition_id))
+    else:
+        print(r.json())
 
     # upload files
     # To upload various files create a loop like : for file in os.listdir(directory):
@@ -46,6 +48,8 @@ if __name__ == '__main__':
     if new_upload.status_code < 399:
         print("Status {}. \nFile(s) correctly uploaded:\n".format(new_upload.status_code),
               z.deposition_files_list(deposition_id).json())
+    else:
+        print(new_upload.json())
 
     # Upload repository information - that you must have filled before ! - and add the doi
     with open('.zenodoci/repository_information.json') as json_file:
@@ -56,6 +60,8 @@ if __name__ == '__main__':
                                        data=entry_info)
     if update_entry.status_code < 399:
         print("Status {}. Repository information correctly uploaded !".format(update_entry.status_code))
+    else:
+        print(update_entry.json())
 
     # publish entry - to publish the entry, uncomment the two lone below
     # publish = z.deposition_actions_publish(deposition_id)

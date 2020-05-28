@@ -1,7 +1,7 @@
 # template_project_escape 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3572655.svg)](https://doi.org/10.5281/zenodo.3572655) 
-[![Build Status](https://gitlab.in2p3.fr/escape2020/escape/template_project_escape/badges/master/pipeline.svg)](
-https://gitlab.in2p3.fr/escape2020/escape/template_project_escape/pipelines/)
+[![pipeline status](https://gitlab.in2p3.fr/escape2020/escape/template_project_escape/badges/master/pipeline.svg)](
+https://gitlab.in2p3.fr/escape2020/escape/template_project_escape/-/commits/master)
 [![Build Status](https://travis-ci.com/garciagenrique/template_project_escape.svg?branch=master)](
 https://travis-ci.com/garciagenrique/template_project_escape)
 
@@ -58,7 +58,7 @@ If you wish to provide software to the ESCAPE repository:
 RENATER), you will need to [add a SSH key](https://gitlab.in2p3.fr/help/ssh/README#generating-a-new-ssh-key-pair) to 
 your GitLab profile if you want to 'push' your changes to the server. 
 
-### Singularity image container and CI/CD to Zenodo
+# Singularity image container and CI/CD to Zenodo
 
 The documentation of how to create a Singularity image / container of your code, upload it to your repository, and also add 
 it to the ESCAPE community in the [Zenodo repository](https://zenodo.org/communities/escape2020) can be found in the

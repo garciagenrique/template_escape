@@ -3,31 +3,28 @@ import os
 import argparse
 from zenodolib import ZenodoHandler
 
-parser = argparse.ArgumentParser(description="Upload a new version of an existing deposit to zenodo")
+parser = argparse.ArgumentParser(description="Upload a new version of an existing deposit to Zenodo")
 
 # Required arguments
 parser.add_argument('--input-file', '-i', type=str,
                     dest='input_file',
-                    help='Full path to the file to upload')
+                    help='Full path to the file to upload',
+                    required=True)
 
 parser.add_argument('--token', '-t', type=str,
                     dest='zenodo_token',
-                    help='Personal access token to Sandbox/zenodo')
+                    help='Personal access token to (sandbox)Zenodo',
+                    required=True)
 
 parser.add_argument('--deposit_id', '-id', type=str,
                     dest='deposit_id',
-                    help='deposit of the existing deposit '
+                    help='deposit of the existing deposit ',
+                    required=True
                     )
 
 args = parser.parse_args()
 
 if __name__ == '__main__':
-    if not args.input_file:
-        print("No file declared ! Exiting. ")
-        exit(1)
-    if not args.deposit_id:
-        print("No zenodo deposition id declared ! Exiting. ")
-        exit(1)
 
     z = ZenodoHandler(access_token=args.zenodo_token,
                       test=True  # True for sandbox.zenodo.org !! False for zenodo.org
@@ -37,6 +34,8 @@ if __name__ == '__main__':
     if new_version.status_code < 399:
         print("Status {}".format(new_version.status_code),
               new_version.json())
+    else:
+        print(new_version.json())
 
     new_deposition_id = new_version.json()['links']['latest_draft'].rsplit('/')[-1]
 
@@ -57,6 +56,8 @@ if __name__ == '__main__':
     if new_upload.status_code < 399:
         print("Status {}. \nFile(s) correctly uploaded:\n".format(new_upload.status_code),
               z.deposition_files_list(new_version).json())
+    else:
+        print(new_upload.json())
 
     # publish entry - to publish the entry, uncomment the two lone below
     # publish = z.deposition_actions_publish(new_deposition_id)

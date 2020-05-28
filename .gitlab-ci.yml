@@ -34,8 +34,21 @@
 ###
 
 stages:
+ - test
  - build
  - deploy
+
+build_test_project:
+    stage: test
+    # Please notice that we are using a different image just for easier syntax in the testing of the building and
+    #  testing of the repository
+    image: continuumio/miniconda3:latest
+    script:
+      - . /opt/conda/etc/profile.d/conda.sh
+      - conda env create -f env_template_escape.yml
+      - conda activate escape_template
+      - python setup.py install
+      - pytest .
 
 build_image:
     stage: build
@@ -57,6 +70,10 @@ build_image:
         paths:
             - build/Singularity.simg
             - build/Singularity
+
+    only:
+      - master
+      - tags
 
 deploy_zenodo:
     stage: deploy
@@ -81,3 +98,6 @@ deploy_zenodo:
         paths:
             - build/Singularity.simg
             - build/Singularity
+
+    only:
+      - tags

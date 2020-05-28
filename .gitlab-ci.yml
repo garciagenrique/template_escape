@@ -45,7 +45,7 @@ build_test_project:
     image: continuumio/miniconda3:latest
     script:
       - . /opt/conda/etc/profile.d/conda.sh
-      - conda env create -f env_template_escape.yml
+      - conda env create -f environment.yml
       - conda activate escape_template
       - python setup.py install
       - pytest .

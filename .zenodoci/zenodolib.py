@@ -1,6 +1,7 @@
 """
 This code is part of https://github.com/SiLeBAT/zenodo-python,
-stayed at commit 513b982c7bf949a96f8208e462c89475bc01d124
+ stayed at commit 513b982c7bf949a96f8208e462c89475bc01d124
+ and added method `deposition_file_upload_large_file` at line 165.
 
 Copyright (c) 2015 Federal Institute for Risk Assessment (BfR), Germany
 
@@ -160,6 +161,32 @@ class ZenodoHandler:
         data = {'file': open(file_path, 'rb')}
         headers = {"Accept": "application/json", "Content-Type": "application/octet-stream"}
         return requests.put(url, data=data, headers=headers, proxies=self.proxies)
+
+    def deposition_file_upload_large_file(self, deposition_id, target_name, file_path):
+        """
+        Upload a new file - Method II.
+
+        Same method as above except that the file object will be directly passed to the request
+        method. Recommended for the upload of large files.
+
+        - Url: https://zenodo.org/api/files/:bucket_url/:target_name
+        - Methods: PUT
+
+        :param deposition_id: Deposition identifier
+        :param target_name: Name of the file once uploaded
+        :param file_path: Path to local file to be uploaded
+
+        :return: request.Response object of the new upload
+        """
+        r = self.deposition_retrieve(deposition_id)
+        bucket_url = r.json()['links']['bucket']
+        url = "{}/{}?access_token={}".format(bucket_url, target_name, self.token)
+        with open(file_path, 'rb') as fp:
+            upload = requests.put(
+                url,
+                data=fp
+            )
+        return upload.json()
 
     def deposition_files_sort(self, deposition_id, file_ids):
         """

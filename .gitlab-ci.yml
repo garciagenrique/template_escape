@@ -70,7 +70,6 @@ build_image:
         paths:
             - build/Singularity.simg
             - build/Singularity
-
     only:
       - master
       - tags
@@ -78,26 +77,47 @@ build_image:
 deploy_zenodo:
     stage: deploy
     image: singularityware/singularity:gitlab-2.6
+    dependencies:
+      - build_image
     script:
         # Step 2. Install dependencies in the image and upload the files to Zenodo
       - apt-get -y update
       - apt-get install python3
+      - apt-get install wget
       - apt -y install python3-pip
 
       - pip3 --version
       - pip3 install requests
       - python3 --version  # It is python3.5 - The image is a Debian GNU/Linux 9 (stretch).
 
-      # For testing purposes the receipt of the Singularity image - small size - is uploaded to sandobox.zenodo.org
-      - python3 .zenodoci/upload_new_deposit.py -i build/Singularity --token $SANDBOX_ZENODO_TOKEN
+      # # For testing purposes try uploading a file of small size to sandobox.zenodo.org (e.g., the singularity receipt)
+      # - rm ./build/Singularity.simg
+      # - python3 .zenodoci/upload_new_deposit.py --sandbox_zenodo True -i ./build --token $SANDBOX_ZENODO_TOKEN
 
-      # Example for the upload of a new version. The deposit id of the entry to be `new_versioned` MUST be provided.
-      # - python3 .zenodoci/upload_new_version_of_deposit.py -i build/Singularity --token $SANDBOX_ZENODO_TOKEN -id ####
+      # # To deploy a NEW DEPOSIT to sandbox.zenodo
+      # - python3 .zenodoci/upload_new_deposit.py --sandbox_zenodo True -i ./build --token $SANDBOX_ZENODO_TOKEN
 
-    artifacts:
-        paths:
-            - build/Singularity.simg
-            - build/Singularity
+      # # To deploy a NEW DEPOSIT to Zenodo
+      - >
+          python3 .zenodoci/upload_new_deposit.py
+          --sandbox_zenodo False
+          --input-directory ./build
+          --token $ZENODO_TOKEN
 
+      # # For deploying a NEW VERSION to Zenodo. The deposit id of the entry to be `new_versioned` MUST be provided.
+      # You will need to provide also th e version of the last release (or parsed yourself via the api ;-) )
+      - export VER=2.0
+      - >
+          wget -O template_project_escape-v"$VER".zip
+          https://gitlab.in2p3.fr/escape2020/escape/template_project_escape/-/archive/v"$VER"/template_project_escape-v"$VER".zip
+      - mv template_project_escape-v"$VER".zip ./build
+      - ls ./build
+      - >
+          python3 .zenodoci/upload_new_version_deposit.py
+          --sandbox_zenodo False
+          --input-directory ./build
+          --token $ZENODO_TOKEN
+          --deposit_id $DEPOSIT_ID_ESCAPE_TEMPLATE
+          --new_deposit_version $VER
     only:
       - tags

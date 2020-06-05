@@ -108,9 +108,9 @@ deploy_zenodo:
       # You will need to provide also th e version of the last release (or parsed yourself via the api ;-) )
       - export VER=2.0
       - >
-          wget -O template_project_escape-V"$VER".zip
-          https://gitlab.in2p3.fr/escape2020/escape/template_project_escape/-/archive/V"$VER"/template_project_escape-V"$VER".zip
-      - mv template_project_escape-V"$VER".zip ./build
+          wget -O template_project_escape-v"$VER".zip
+          https://gitlab.in2p3.fr/escape2020/escape/template_project_escape/-/archive/v"$VER"/template_project_escape-v"$VER".zip
+      - mv template_project_escape-v"$VER".zip ./build
       - ls ./build
       - >
           python3 .zenodoci/upload_new_version_deposit.py

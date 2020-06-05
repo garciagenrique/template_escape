@@ -12,8 +12,8 @@ https://travis-ci.com/garciagenrique/template_project_escape)
 
 A simple template project to provide software to ESCAPE.
 
-It shows the **basic documentation** a project should include, following the 
-[opensource guide](https://opensource.guide/starting-a-project/):
+The repository shows the **basic documentation** that should be included within the project (following the 
+[opensource guide](https://opensource.guide/starting-a-project/)):
 
 * An [open source](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository#where-does-the-license-live-on-my-repository)
  **license**.
@@ -23,12 +23,12 @@ It shows the **basic documentation** a project should include, following the
     - See below the general guidelines for the ESCAPE repository.
 * A [code of conduct](https://opensource.guide/code-of-conduct/).
     - Check why is a good idea to add one.
-* The structure of the repository.
+* The repository itself.
 
 It would be highly suitable to include too:
    - A setup file as well as the basic commands to install the library (see below).
    - A .gitignore file.
-   - Unitary and integration tests.
+   - Unitary and integration tests, and ideally a CI pipeline.
    
 **Please feel free to copy / base on / template this project!** (Look to left of the `Clone or download` button in the 
 [GitHub](https://github.com/garciagenrique/template_project_escape) site).
@@ -60,9 +60,13 @@ your GitLab profile if you want to 'push' your changes to the server.
 
 # Singularity image container and CI/CD to Zenodo
 
-The documentation of how to create a Singularity image / container of your code, upload it to your repository, and also add 
-it to the ESCAPE community in the [Zenodo repository](https://zenodo.org/communities/escape2020) can be found in the
- `.gitlabci`, `.zenodoci` directories and in the `.gitlab-ci.yml` file. Please read carefully all the README files.  
+An example of how to; 
+ 1. create a Singularity image / container of your code, 
+ 2. make it available as a downloadable artifact within your project and 
+ 3. add it to the ESCAPE community in the [Zenodo repository](https://zenodo.org/communities/escape2020), 
+ 
+can be found in the `.gitlabci`, `.zenodoci` directories and in the `.gitlab-ci.yml` file. Please read carefully 
+all the README files.  
 
 For an easy example of how to create a Singularity receipt from scratch (and its corresponding container when executed),
 please have a look to the `singularity_utils` directory. 
@@ -75,7 +79,7 @@ please have a look to the `singularity_utils` directory.
   $ python setup.py install
 ``` 
 
-This is an easy method to install the library. 
+This is an easy method to install the current project. 
 You can also check other more elaborated ways - generally for bigger repositories - here (e.g.,
  [cta-observatory/cta-lstchain](https://github.com/cta-observatory/cta-lstchain), 
  [cta-observatory/ctapipe](https://github.com/cta-observatory/ctapipe)).

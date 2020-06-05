@@ -58,19 +58,19 @@ if __name__ == '__main__':
         new_upload = z.deposition_file_upload_large_file(deposition_id,
                                                          target_name=file,
                                                          file_path=full_path_file)
-        print(new_upload)
+        print("File {} correctly uploaded !\n".format(file), new_upload)
 
     # Upload repository information - that you must have filled before ! - and add the doi
     with open('.zenodoci/repository_information.json') as json_file:
         entry_info = json.load(json_file)
-    entry_info['metadata']['doi'] = doi
+    #entry_info['metadata']['doi'] = doi
 
     update_entry = z.deposition_update(deposition_id,
                                        data=entry_info)
     if update_entry.status_code < 399:
         print("Status {}. Repository information correctly uploaded !".format(update_entry.status_code))
     else:
-        print(update_entry.json())
+        print("Repository information NOT correctly uploaded !", update_entry.json())
 
     # publish entry - to publish the entry, uncomment the two lone below
     # publish = z.deposition_actions_publish(deposition_id)

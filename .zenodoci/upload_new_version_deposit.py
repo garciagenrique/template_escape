@@ -72,7 +72,7 @@ if __name__ == '__main__':
         new_upload = z.deposition_file_upload_large_file(new_deposition_id,
                                                          target_name=file,
                                                          file_path=full_path_file)
-        print(new_upload)
+        print("File {} correctly uploaded !\n".format(file), new_upload)
 
     # Update metadata info
     updated_metadata = z.deposition_retrieve(new_deposition_id).json()['metadata']
@@ -85,8 +85,12 @@ if __name__ == '__main__':
     updated_metadata['license'] = 'GPL-3.0+'
     updated_metadata['keywords'] = []
 
-    z.deposition_update(new_deposition_id,
-                        data=updated_metadata)
+    update_entry = z.deposition_update(new_deposition_id,
+                                       data=updated_metadata)
+    if update_entry.status_code < 399:
+        print("Status {}. Repository information correctly uploaded !".format(update_entry.status_code))
+    else:
+        print("Repository information NOT correctly uploaded !", update_entry.json())
 
     # publish entry - to publish the entry, uncomment the two lone below
     # publish = z.deposition_actions_publish(new_deposition_id)

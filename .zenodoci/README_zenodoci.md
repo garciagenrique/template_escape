@@ -32,7 +32,7 @@ This token will be passed later in the continuous deployment stage of the CI/CD 
 your personal token, you should create an environment variable in your GitLab repository. This way, the token could be used as a variable without
  revealing its value. To create an an environment variable:
   - Go to your GitLab repository.
-  - Settings --> CI/CD --> Variables --> Add variable --> Fill the fields --> Mask and protect the variable !
+  - Settings --> CI/CD --> Variables --> Add variable --> Fill the fields --> Mask your variable(s) !!
 
 The environment variable will look like this:
 

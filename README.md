@@ -1,5 +1,5 @@
 # template_project_escape 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3572655.svg)](https://doi.org/10.5281/zenodo.3572655) 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3884963.svg)](https://doi.org/10.5281/zenodo.3884963) 
 [![pipeline status](https://gitlab.in2p3.fr/escape2020/escape/template_project_escape/badges/master/pipeline.svg)](
 https://gitlab.in2p3.fr/escape2020/escape/template_project_escape/-/commits/master)
 [![Build Status](https://travis-ci.com/garciagenrique/template_project_escape.svg?branch=master)](
@@ -86,7 +86,7 @@ You can also check other more elaborated ways - generally for bigger repositorie
 
 # Citing 
 In case of citing this repository, use the following DOI:
- - v 1.0: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3572655.svg)](https://doi.org/10.5281/zenodo.3572655)
+ - v2.0 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3884963.svg)](https://doi.org/10.5281/zenodo.3884963)
 
 Do not forget to include your code / container into the [Zenodo ESCAPE community](https://zenodo.org/communities/escape2020/). 
  - ***Note that*** you will be able to assign a DOI in the moment you include your code/repository to Zenodo. 

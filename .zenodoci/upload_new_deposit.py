@@ -63,17 +63,23 @@ if __name__ == '__main__':
     # Upload repository information - that you must have filled before ! - and add the doi
     with open('.zenodoci/repository_information.json') as json_file:
         entry_info = json.load(json_file)
-    #entry_info['metadata']['doi'] = doi
+
+    # entry_info['metadata']['doi'] = doi
+    # In the new version of the API the doi is updated automatically. The new doi must look something
+    #  like 10.5281/{deposition_id}
 
     update_entry = z.deposition_update(deposition_id,
                                        data=entry_info)
     if update_entry.status_code < 399:
         print("Status {}. Repository information correctly uploaded !".format(update_entry.status_code))
     else:
-        print("Repository information NOT correctly uploaded !", update_entry.json())
+        print("Repository information NOT correctly uploaded ! Status {}\n".format(update_entry.status_code),
+              update_entry.json())
 
     # publish entry - to publish the entry, uncomment the two lone below
     # publish = z.deposition_actions_publish(deposition_id)
     # print(publish.json())
+
     print("New deposit correctly published !")
-    print("Check the upload at {}deposit/{}".format(z.base_url[:-4], deposition_id))
+    print("The new doi should look like 10.5281/{}. However please".format(deposition_id))
+    print(" ** Check the upload at {}deposit/{}  **".format(z.base_url[:-4], deposition_id))

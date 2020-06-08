@@ -98,19 +98,19 @@ deploy_zenodo:
       # - python3 .zenodoci/upload_new_deposit.py --sandbox_zenodo True -i ./build --token $SANDBOX_ZENODO_TOKEN
 
       # # To deploy a NEW DEPOSIT to Zenodo
-      - >
-          python3 .zenodoci/upload_new_deposit.py
-          --sandbox_zenodo False
-          --input-directory ./build
-          --token $ZENODO_TOKEN
+      # - >
+      #     python3 .zenodoci/upload_new_deposit.py
+      #     --sandbox_zenodo False
+      #     --input-directory ./build
+      #     --token $ZENODO_TOKEN
 
-      # # For deploying a NEW VERSION to Zenodo. The deposit id of the entry to be `new_versioned` MUST be provided.
-      # You will need to provide also th e version of the last release (or parsed yourself via the api ;-) )
-      - export VER=2.0
+      # # To deploy a NEW VERSION to Zenodo: The deposit id of the entry to be `new_versioned` MUST be provided.
+      # You will need to provide also the version of the last release (or parsed yourself via the api ;-) )
+      - export VER=v2.0
       - >
-          wget -O template_project_escape-v"$VER".zip
-          https://gitlab.in2p3.fr/escape2020/escape/template_project_escape/-/archive/v"$VER"/template_project_escape-v"$VER".zip
-      - mv template_project_escape-v"$VER".zip ./build
+          wget -O template_project_escape-"$VER".zip
+          https://gitlab.in2p3.fr/escape2020/escape/template_project_escape/-/archive/"$VER"/template_project_escape-"$VER".zip
+      - mv template_project_escape-"$VER".zip ./build
       - ls ./build
       - >
           python3 .zenodoci/upload_new_version_deposit.py

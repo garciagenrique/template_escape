@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+import json
 import argparse
 from distutils.util import strtobool
 from zenodolib import ZenodoHandler
@@ -75,26 +76,25 @@ if __name__ == '__main__':
         print("File {} correctly uploaded !\n".format(file), new_upload)
 
     # Update metadata info
-    updated_metadata = z.deposition_retrieve(new_deposition_id).json()['metadata']
-    if not args.new_deposit_version:
-        updated_metadata['version'] = updated_metadata['version'] + 1
-    else:
-        updated_metadata['version'] = args.new_deposit_version
+    with open('.zenodoci/repository_information.json') as json_file:
+        update_entry_info = json.load(json_file)
 
-    # Update any other info if needed here
-    updated_metadata['license'] = 'GPL-3.0+'
-    updated_metadata['keywords'] = []
+    # update_entry_info['metadata']['doi'] = doi
+    # In the new version of the API the doi is updated automatically. The new doi must look something
+    # like 10.5281/{new_deposition_id}
 
     update_entry = z.deposition_update(new_deposition_id,
-                                       data=updated_metadata)
+                                       data=update_entry_info)
     if update_entry.status_code < 399:
-        print("Status {}. Repository information correctly uploaded !".format(update_entry.status_code))
+        print("Status {}. Repository information correctly uploaded !\n".format(update_entry.status_code))
     else:
-        print("Repository information NOT correctly uploaded !", update_entry.json())
+        print("Repository information NOT correctly uploaded !\n", update_entry.json())
 
     # publish entry - to publish the entry, uncomment the two lone below
     # publish = z.deposition_actions_publish(new_deposition_id)
     # print(publish.json())
+
     print("New version of the old deposition correctly published !")
     print("Old deposition id {}, new deposition id {}".format(args.deposit_id, new_deposition_id))
-    print("Check the upload at {}deposit/{}".format(z.base_url[:-4], new_deposition_id))
+    print("The new doi should look like 10.5281/{}. However please".format(new_deposition_id))
+    print(" ** Check the upload at {}deposit/{}  **".format(z.base_url[:-4], new_deposition_id))

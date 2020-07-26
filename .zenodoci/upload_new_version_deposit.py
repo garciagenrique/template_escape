@@ -43,7 +43,9 @@ if __name__ == '__main__':
                       test=args.sandbox_flag  # True for sandbox.zenodo.org !! False for zenodo.org
                       )
 
+    # 1 - request a new version of an existing deposit
     new_version = z.deposition_actions_newversion(args.deposit_id)
+
     if new_version.status_code < 399:
         print("Status {}. New version of the {} entry correctly created !".format(new_version.status_code,
                                                                                   args.deposit_id)
@@ -59,38 +61,32 @@ if __name__ == '__main__':
         z.deposition_files_delete(new_deposition_id,
                                   file_id)
 
-    # Upload new version of file(s)
+    # 2 - Upload new version of file(s)
     for file in os.listdir(args.input_directory):
         full_path_file = args.input_directory + '/' + file
-
-        # # For standard files
-        # new_upload = z.deposition_files_create(deposition_id,
-        #                                        target_name=file,
-        #                                        file_path=full_path_file)
-        # print(new_upload.json())
 
         # # For large files
         new_upload = z.deposition_file_upload_large_file(new_deposition_id,
                                                          target_name=file,
                                                          file_path=full_path_file)
+
         print("File {} correctly uploaded !\n".format(file), new_upload)
 
-    # Update metadata info
+    # 3 - Update metadata info
     with open('.zenodoci/repository_information.json') as json_file:
         update_entry_info = json.load(json_file)
 
-    # update_entry_info['metadata']['doi'] = doi
-    # In the new version of the API the doi is updated automatically. The new doi must look something
-    # like 10.5281/{new_deposition_id}
+    # update_entry_info['metadata']['doi'] = doi  # In the new version of the API the doi is updated automatically.
 
     update_entry = z.deposition_update(new_deposition_id,
                                        data=update_entry_info)
+
     if update_entry.status_code < 399:
         print("Status {}. Repository information correctly uploaded !\n".format(update_entry.status_code))
     else:
         print("Repository information NOT correctly uploaded !\n", update_entry.json())
 
-    # publish entry - to publish the entry, uncomment the two lone below
+    # 4 - publish entry - to publish the entry, uncomment the two lone below
     # publish = z.deposition_actions_publish(new_deposition_id)
     # print(publish.json())
 

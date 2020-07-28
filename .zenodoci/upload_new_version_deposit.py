@@ -47,9 +47,7 @@ if __name__ == '__main__':
     new_version = z.deposition_actions_newversion(args.deposit_id)
 
     if new_version.status_code < 399:
-        print("Status {}. New version of the {} entry correctly created !".format(new_version.status_code,
-                                                                                  args.deposit_id)
-              )
+        print(f"Status {new_version.status_code}. New version of the {args.deposit_id} entry correctly created !")
     else:
         print(new_version.json())
 
@@ -70,7 +68,7 @@ if __name__ == '__main__':
                                                          target_name=file,
                                                          file_path=full_path_file)
 
-        print("File {} correctly uploaded !\n".format(file), new_upload)
+        print(f"File {file} correctly uploaded !\n", new_upload)
 
     # 3 - Update metadata info
     with open('.zenodoci/repository_information.json') as json_file:
@@ -82,15 +80,16 @@ if __name__ == '__main__':
                                        data=update_entry_info)
 
     if update_entry.status_code < 399:
-        print("Status {}. Repository information correctly uploaded !\n".format(update_entry.status_code))
+        print(f"Status {update_entry.status_code}. Repository information correctly uploaded !\n")
     else:
-        print("Repository information NOT correctly uploaded !\n", update_entry.json())
+        print(f"Repository information NOT correctly uploaded ! Status {update_entry.status_code}\n",
+              update_entry.json())
 
     # 4 - publish entry - to publish the entry, uncomment the two lone below
     # publish = z.deposition_actions_publish(new_deposition_id)
     # print(publish.json())
 
     print("New version of the old deposition correctly published !")
-    print("Old deposition id {}, new deposition id {}".format(args.deposit_id, new_deposition_id))
-    print("The new doi should look like 10.5281/{}. However please".format(new_deposition_id))
-    print(" ** Check the upload at {}deposit/{}  **".format(z.base_url[:-4], new_deposition_id))
+    print(f"Old deposition id {args.deposit_id}, new deposition id {new_deposition_id}")
+    print(f"The new doi should look like 10.5281/{new_deposition_id}. However please")
+    print(f" ** Check the upload at {z.base_url[:-4]}deposit/{new_deposition_id}  **")

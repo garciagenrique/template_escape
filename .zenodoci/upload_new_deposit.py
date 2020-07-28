@@ -40,8 +40,7 @@ if __name__ == '__main__':
     if r.status_code < 399:
         deposition_id = r.json()['id']
         doi = r.json()['metadata']['prereserve_doi']['doi']
-        print("Status {}. New entry to Zenodo created ! Deposition id {}".format(r.status_code,
-                                                                                 deposition_id))
+        print(f"Status {r.status_code}. New entry to Zenodo created ! Deposition id {deposition_id}")
     else:
         print(r.json())
 
@@ -53,7 +52,7 @@ if __name__ == '__main__':
                                                          target_name=file,
                                                          file_path=full_path_file)
 
-        print("File {} correctly uploaded !\n".format(file), new_upload)
+        print(f"File {file} correctly uploaded !\n", new_upload)
 
     # 3 - Upload repository information - that you must have filled before the json file !
     with open('.zenodoci/repository_information.json') as json_file:
@@ -64,9 +63,9 @@ if __name__ == '__main__':
                                        data=entry_info)
 
     if update_entry.status_code < 399:
-        print("Status {}. Repository information correctly uploaded !".format(update_entry.status_code))
+        print(f"Status {update_entry.status_code}. Repository information correctly uploaded !")
     else:
-        print("Repository information NOT correctly uploaded ! Status {}\n".format(update_entry.status_code),
+        print(f"Repository information NOT correctly uploaded ! Status {update_entry.status_code}\n",
               update_entry.json())
 
     # 4 - publish entry - to publish the entry, uncomment the two lone below
@@ -74,5 +73,5 @@ if __name__ == '__main__':
     # print(publish.json())
 
     print("New deposit correctly published !")
-    print("The new doi should look like 10.5281/{}. However please".format(deposition_id))
-    print(" ** Check the upload at {}deposit/{}  **".format(z.base_url[:-4], deposition_id))
+    print(f"The new doi should look like 10.5281/{deposition_id}. However please")
+    print(f" ** Check the upload at {z.base_url[:-4]}deposit/{deposition_id}  **")

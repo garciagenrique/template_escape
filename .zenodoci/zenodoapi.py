@@ -92,7 +92,7 @@ class ZenodoAPI:
         headers = {"Content-Type": "application/json"}
         parameters = {'access_token': self.access_token}
 
-        return requests.put(url, data=json.dump(data), headers=headers, params=parameters)
+        return requests.put(url, data=json.dumps(data), headers=headers, params=parameters)
 
     def erase_file_entry(self, entry_id, file_id):
         """

@@ -26,7 +26,11 @@ From: ubuntu:latest
         cd template_project_escape
         git fetch --tags
         tag=$(git describe --tags `git rev-list --tags --max-count=1`)
-        git checkout $tag -b master_tag_$tag
+        if [ -z "$tag" ]; then
+            git pull origin master
+        else
+            git checkout $tag -b master_tag_$tag
+        fi
         python setup.py install
 
         conda clean -a

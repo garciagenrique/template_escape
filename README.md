@@ -4,6 +4,7 @@
 https://gitlab.in2p3.fr/escape2020/escape/template_project_escape/-/commits/master)
 [![Build Status](https://travis-ci.com/garciagenrique/template_project_escape.svg?branch=master)](
 https://travis-ci.com/garciagenrique/template_project_escape)
+[![License: MIT](https://img.shields.io/badge/License-MIT-indigo.svg)](https://opensource.org/licenses/MIT)
 
 
 <p align="center">

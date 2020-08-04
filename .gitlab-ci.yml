@@ -60,11 +60,18 @@ deploy_zenodo:
       - export LAST_RELEASE=`git ls-remote --tags --refs --sort="v:refname" $REPOSITORY_URL | tail -n1 | sed 's/.*\///'`
 
       ### 3 - Download the repository and move it to the build directory
+      - mkdir -p build
       - >
-        wget -O $REPOSITORY_NAME-$LAST_RELEASE.zip
-        https://gitlab.in2p3.fr/escape2020/escape/"$REPOSITORY_NAME"/-/archive/"$LAST_RELEASE"/"$REPOSITORY_NAME"-"$LAST_RELEASE".zip
+        if [ -z "$LAST_RELEASE" ]; then
+          echo "No tag / new release found ! - Or error when parsing. Downloading last commit to the repository (master branch) ;"; \
+          wget -O $REPOSITORY_NAME-master.zip https://gitlab.in2p3.fr/escape2020/escape/"$REPOSITORY_NAME"/-/archive/master/"$REPOSITORY_NAME"-master.zip; \
+          mv $REPOSITORY_NAME-master.zip ./build
+        else
+          echo "$LAST_RELEASE tag / release found !"; \
+          wget -O $REPOSITORY_NAME-$LAST_RELEASE.zip https://gitlab.in2p3.fr/escape2020/escape/"$REPOSITORY_NAME"/-/archive/"$LAST_RELEASE"/"$REPOSITORY_NAME"-"$LAST_RELEASE".zip; \
+          mv $REPOSITORY_NAME-$LAST_RELEASE.zip ./build
+        fi
 
-      - mv $REPOSITORY_NAME-$LAST_RELEASE.zip ./build
       - ls ./build
 
       ### 4 - To deploy a NEW DEPOSIT to ZENODO SANDBOX

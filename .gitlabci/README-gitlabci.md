@@ -12,9 +12,9 @@ to implement this code [here](https://vsoch.github.io/2018/gitlab-singularity-ci
 
 This software (composed of the files within this directory **AND** part of the the `.gitlab-ci.yml` file in the
 root directory - the `build_image` stage) provide the necessary tools to:
- - Use a Singularity image stored in the DockerHub site to create a Singularity Container of your repository 
- (thus no need of having installed the Singularity program), and uploaded it directly to your GitLab repository.
- - The Singularity receipt must be provided, of course.
+ - Use a container image stored in the DockerHub site to create a Singularity container of your repository 
+ (thus no need of having installed the Singularity source code), and upload it directly to your GitLab repository.
+ - The Singularity recipe must be provided, of course.
  - In case the container is too large (10 Gb total storage limit for a single GitLab project), you must pass 
  through a cloud service (various examples of different services are shown in the tutorial and the original repository). 
 

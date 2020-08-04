@@ -3,7 +3,7 @@ import os
 import json
 import argparse
 from distutils.util import strtobool
-from .zenodoapi import ZenodoAPI
+from zenodoapi import ZenodoAPI
 
 
 parser = argparse.ArgumentParser(description="Upload new deposit entry to Zenodo")

@@ -27,11 +27,11 @@ The repository shows the **basic documentation** that should be included within 
 
 It would be highly suitable to include too:
    - A setup file as well as the basic commands to install the library (see below).
-   - A .gitignore file.
+   - A `.gitignore` file.
    - Unitary and integration tests, and ideally a CI pipeline.
    
-**Please feel free to copy / base on / template this project!** (Look to left of the `Clone or download` button in the 
-[GitHub](https://github.com/garciagenrique/template_project_escape) site).
+**Please feel free to clone / fork / template this project!** (For example, look to left of the 
+`Clone or download` button in the [GitHub](https://github.com/garciagenrique/template_project_escape) site).
 
 Take few minutes to check the [ESCAPE repository's guidelines](https://gitlab.in2p3.fr/escape2020/guidelines) too.
 

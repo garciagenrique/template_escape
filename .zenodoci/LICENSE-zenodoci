@@ -1,17 +1,6 @@
- - Copyright for portions of the `template_project_escape` (scripts within the `.gitlabci` directory
-and portions of the `.gitlab-ci.yml` file) are held by the `BSD 3-Clause License, Copyright (c) 2018,
-Vanessa Sochat` as part of project `GitLab-CI` (see the readme and license files within the same directory).
-
- - Copyright for portions of the `template_project_escape` (scripts within the `.zenodoci` directory
-and portions of the `.gitlab-ci.yml` file) are held by the `MIT License, Copyright (c) 2020, ZenodoCI developers`,
-as part of project `ZenodoCI` (see the readme and license files within the same directory).
-
-All other copyright for the project `template_project_escape` are held by the following license;
-
-
 MIT License
 
-Copyright (c) 2020, template_project_escape developers.
+Copyright (c) 2020, ZenodoCI developers.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

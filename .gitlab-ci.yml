@@ -56,7 +56,7 @@ deploy_zenodo:
 
       ### 2 - Get the last tag/release of the repository
       - export REPOSITORY_NAME=template_project_escape
-      - export REPOSITORY_URL=https://gitlab.in2p3.fr/escape2020/escape/$REPOSITORY_NAME.git
+      - export REPOSITORY_URL=https://gitlab.in2p3.fr/escape2020/wp3/$REPOSITORY_NAME.git
       - export LAST_RELEASE=`git ls-remote --tags --refs --sort="v:refname" $REPOSITORY_URL | tail -n1 | sed 's/.*\///'`
 
       ### 3 - Download the repository and move it to the build directory
@@ -64,11 +64,11 @@ deploy_zenodo:
       - >
         if [ -z "$LAST_RELEASE" ]; then
           echo "No tag / new release found ! - Or error when parsing. Downloading last commit to the repository (master branch) ;"; \
-          wget -O $REPOSITORY_NAME-master.zip https://gitlab.in2p3.fr/escape2020/escape/"$REPOSITORY_NAME"/-/archive/master/"$REPOSITORY_NAME"-master.zip; \
+          wget -O $REPOSITORY_NAME-master.zip https://gitlab.in2p3.fr/escape2020/wp3/"$REPOSITORY_NAME"/-/archive/master/"$REPOSITORY_NAME"-master.zip; \
           mv $REPOSITORY_NAME-master.zip ./build
         else
           echo "$LAST_RELEASE tag / release found !"; \
-          wget -O $REPOSITORY_NAME-$LAST_RELEASE.zip https://gitlab.in2p3.fr/escape2020/escape/"$REPOSITORY_NAME"/-/archive/"$LAST_RELEASE"/"$REPOSITORY_NAME"-"$LAST_RELEASE".zip; \
+          wget -O $REPOSITORY_NAME-$LAST_RELEASE.zip https://gitlab.in2p3.fr/escape2020/wp3/"$REPOSITORY_NAME"/-/archive/"$LAST_RELEASE"/"$REPOSITORY_NAME"-"$LAST_RELEASE".zip; \
           mv $REPOSITORY_NAME-$LAST_RELEASE.zip ./build
         fi
 

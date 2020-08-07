@@ -4,7 +4,7 @@
 
 ## Continuous Deployment to Zenodo
 
-The source code contained in this folder is based on the [ZenodoCI](https://gitlab.in2p3.fr/escape2020/escape/zenodoci) 
+The source code contained in this folder is based on the [ZenodoCI](https://gitlab.in2p3.fr/escape2020/wp3/zenodoci) 
 project. The library was developed specifically to perform a deploy stage (to the Zenodo repository) in a GitLab CI 
 pipeline that **could be implemented in any external project**. 
   

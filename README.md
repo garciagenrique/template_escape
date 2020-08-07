@@ -1,10 +1,8 @@
 # template_project_escape 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3884963.svg)](https://doi.org/10.5281/zenodo.3884963) 
-[![pipeline status](https://gitlab.in2p3.fr/escape2020/escape/template_project_escape/badges/master/pipeline.svg)](
-https://gitlab.in2p3.fr/escape2020/escape/template_project_escape/-/commits/master)
-[![Build Status](https://travis-ci.com/garciagenrique/template_project_escape.svg?branch=master)](
-https://travis-ci.com/garciagenrique/template_project_escape)
-[![License: MIT](https://img.shields.io/badge/License-MIT-indigo.svg)](https://opensource.org/licenses/MIT)
+[![pipeline status](https://gitlab.in2p3.fr/escape2020/wp3/template_project_escape/badges/master/pipeline.svg)](
+https://gitlab.in2p3.fr/escape2020/wp3/template_project_escape/-/commits/master)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 
 <p align="center">
@@ -34,26 +32,17 @@ It would be highly suitable to include too:
 **Please feel free to clone / fork / template this project!** (For example, look to left of the 
 `Clone or download` button in the [GitHub](https://github.com/garciagenrique/template_project_escape) site).
 
-Take few minutes to check the [ESCAPE repository's guidelines](https://gitlab.in2p3.fr/escape2020/guidelines) too.
-
 # Contributing guidelines for the ESCAPE repository
 
 If you wish to provide software to the ESCAPE repository: 
 
- - You should ask developer access through the Gitlab interface and send an email to vuillaume [at] lapp.in2p3.fr with
-  your institution email.
+ - Check the [ESCAPE repository's guidelines](https://gitlab.in2p3.fr/escape2020/wp3/guidelines).
 
- - You will then be able to open a new project and transfer code.
-
- - All the code provided should be uploaded from the [Zenodo ESCAPE community](https://zenodo.org/communities/escape2020/). 
+ - All the code provided should be uploaded to the [Zenodo ESCAPE community](https://zenodo.org/communities/escape2020/). 
 
  - For a detailed explanation of how to submit a contribution to a project / repository (Fork, create a branch, make
   a pull request...), please check the [opensource guide](https://opensource.guide/how-to-contribute/#how-to-submit-a-contribution) 
   and/or the [git's documentation](https://git-scm.com/doc).
-
- - Once you are granted with developer access, you will be able to add a new blank project / import it (from other
-  common repository managers, i.e., GitHub, GitLab, Bitbucket, Fogbugz...) to the
-   [GitLab/ESCAPE](https://gitlab.in2p3.fr/escape2020) main page.
 
 ***PLEASE NOTE*** that if you have login GitLab by using the `[Shibbolenth]` service (eduGAIN, Fédération d'Identités 
 RENATER), you will need to [add a SSH key](https://gitlab.in2p3.fr/help/ssh/README#generating-a-new-ssh-key-pair) to 
@@ -75,7 +64,7 @@ please have a look to the `singularity_utils` directory.
 # Installation
 
 ```sh
-  $ git clone https://gitlab.in2p3.fr/escape2020/escape/template_project_escape.git
+  $ git clone https://gitlab.in2p3.fr/escape2020/wp3/template_project_escape.git
   $ cd template_project_escape
   $ python setup.py install
 ``` 
@@ -96,7 +85,7 @@ Please check the licenses of the code within in the `.gitlabci`, `.zenodoci` dir
 to your project.
 
 # Report an issue / Ask a question
-Use the [GitLab repository Issues](https://gitlab.in2p3.fr/escape2020/escape/template_project_escape/-/issues).
+Use the [GitLab repository Issues](https://gitlab.in2p3.fr/escape2020/wp3/template_project_escape/-/issues).
 
 # Contact
 Email to vuillaume [at] lapp.in2p3.fr / garcia [at] lapp.in2p3.fr.

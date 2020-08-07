@@ -10,7 +10,7 @@ contact:
   - name: Enrique Garcia
   - email: garcia@lapp.in2p3.fr
 license: MIT
-url: https://gitlab.in2p3.fr/escape2020/escape/template_project_escape
+url: https://gitlab.in2p3.fr/escape2020/wp3/template_project_escape
 description: A template project to provide software to ESCAPE.
 
 # Optional entries

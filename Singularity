@@ -22,7 +22,7 @@ From: ubuntu:latest
         conda env create -f environment.yml
         conda activate escape_template
 
-        git clone https://gitlab.in2p3.fr/escape2020/escape/template_project_escape.git
+        git clone https://gitlab.in2p3.fr/escape2020/wp3/template_project_escape.git
         cd template_project_escape
         git fetch --tags
         tag=$(git describe --tags `git rev-list --tags --max-count=1`)

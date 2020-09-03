@@ -1,0 +1,29 @@
+# For a complete output file (.gitlab-ci.yml) example with all the options have a look to
+#  https://gitlab.in2p3.fr/escape2020/wp3/template_project_escape/-/blob/master/.gitlab-ci.yml
+
+# If the CI file contains a `build` stage, the `repository_information` section MUST be filled
+# If the CI file contains a `deploy` stage, the `zenodoci_information` section MUST be filled
+
+stages:
+  # The stages that will appear in the gitlab-ci.yml file.
+  - test
+  - build
+  - deploy
+
+repository_information:
+  # For an e.g; https://gitlab.in2p3.fr/escape2020/wp3/zenodoci
+
+  # name is just `zenodoci`
+  name: zenodoci
+  # The FULL url just before the repo name
+  base_url: https://gitlab.in2p3.fr/escape2020/wp3/
+
+
+zenodoci_information:
+  # ALL boolean keys
+  # True(False) to interact with (sandbox.)zenodo.org/communities/escape2020
+  sandbox: false
+
+  # only ONE of the [new_entry, new_version] options can be true, the other MUST be the opposite
+  new_entry: false
+  new_version: true

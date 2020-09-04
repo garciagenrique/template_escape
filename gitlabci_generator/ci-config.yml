@@ -20,10 +20,10 @@ repository_information:
 
 
 zenodoci_information:
-  # ALL boolean keys
+  # All keys must container boolean values
   # True(False) to interact with (sandbox.)zenodo.org/communities/escape2020
   sandbox: false
 
-  # only ONE of the [new_entry, new_version] options can be true, the other MUST be the opposite
-  new_entry: false
-  new_version: true
+  # only ONE of the [new_entry, new_version] options can be TRUE, the other MUST be the opposite
+  new_entry: true
+  new_version: false

@@ -150,7 +150,7 @@ class FillCiScript:
                 "      --token $SANDBOX_ZENODO_TOKEN\n",
                 "      --sandbox_zenodo True\n",
                 "      --input-directory ./build\n",
-                "      --deposit_id $DEPOSIT_ID_ESCAPE_TEMPLATE\n",
+                "      --deposit_id $ZENODO_PROJECT_ID\n",
                 "\n"
             ]
 

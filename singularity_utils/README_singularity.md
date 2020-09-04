@@ -9,12 +9,12 @@ This directory contains all what you need to create a singularity image of the c
 2. Run the script that creates the Singularity image:
 
 ```console
-  $ cd singularity
+  $ cd singularity_utils
   $ ./create_singularity_image.sh
 ``` 
 
-The script will build an image of the repository by using an easy home-made Singularity recipe (`*.recipe` - note that  
-the singularity receipt is usually named just `Singularity` - like in the parent directory of this repository).  
+The script will build an image of the repository by using an easy home-made Singularity recipe (note that  
+the singularity receipt is just named `Singularity`).  
 
 Staring from an [Ubuntu container from the dockerhub](https://hub.docker.com/_/ubuntu):
  - It will download and install miniconda3.

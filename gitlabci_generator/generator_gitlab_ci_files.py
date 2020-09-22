@@ -86,7 +86,7 @@ class FillCiScript:
             "\n",
             f"    - export REPOSITORY_NAME={self.repository_info['name']}\n",
             f"    - export REPOSITORY_BASE_URL={self.repository_info['base_url']}$REPOSITORY_NAME\n",
-            """    - export LAST_RELEASE=`git ls-remote --tags --refs --sort="v:refname" $REPOSITORY_URL.git | tail -n1 | sed 's/.*\///'`\n""",
+            """    - export LAST_RELEASE=`git ls-remote --tags --refs --sort="v:refname" $REPOSITORY_BASE_URL.git | tail -n1 | sed 's/.*\///'`\n""",
             "\n",
             "    - mkdir -p build\n",
             "    - >\n",

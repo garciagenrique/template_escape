@@ -26,9 +26,9 @@ class ZenodoAPI:
         """
 
         if sandbox:
-            zenodo_api_url = "https://sandbox.zenodo.org/api/"
+            zenodo_api_url = "https://sandbox.zenodo.org/api"
         else:
-            zenodo_api_url = "https://zenodo.org/api/"
+            zenodo_api_url = "https://zenodo.org/api"
 
         self.zenodo_api_url = zenodo_api_url
         self.access_token = access_token
@@ -138,7 +138,7 @@ class ZenodoAPI:
 
         :return: requests.post answer
         """
-        url = f"{self.zenodo_api_url}deposit/depositions/{entry_id}/actions/newversion"
+        url = f"{self.zenodo_api_url}/deposit/depositions/{entry_id}/actions/newversion"
         parameters = {'access_token': self.access_token}
 
         return requests.post(url, params=parameters)

@@ -1,0 +1,50 @@
+{
+  "metadata": {
+    "upload_type": "software",
+    "publication_date": "patata",
+    "title": "Im going to try to cheat you ;) ",
+    "creators": [
+      {"name": "Frita, Patata", "affiliation": "Jupyter"},
+      {"name": "M. Cheater", "affiliation": "Saturn", "orcid": "0000-0000-0000-0000"},
+    ],
+    "description": "Abstractract description of the deposit",
+    "access_right": "open",
+    "license": "GPL-3.0+",
+    "communities": [{"identifier": "escape2020"}],
+    "keywords": ["a list of the ", "cool keywords to ", "find your entry"],
+    "language": "eng",
+    "notes": "(This will appear as a subtitle)",
+    "version": "2.0",
+    "grants": [
+      {"id": "10.13039/501100000780::824064"}
+    ],
+    "references": ["EXAMPLE Doe J (2014). Title. Publisher. DOI", "Smith J (2014). Title. Publisher. DOI"],
+    "locations": [
+      {"lat": 34.02577, "lon": -118.7804, "place": "Los Angeles"},
+      {"place": "Mt.Fuji, Japan", "description": "Sample found 100ft from the foot of the mountain."}
+    ],
+    "dates": [
+      {"start": "2018-03-21", "end": "2018-03-25", "type": "Collected", "description": "Specimen A5 collection period."}
+    ],
+    "related_identifiers": null,
+    "journal_title": null,
+    "journal_volumne": null,
+    "journal_issue": null,
+    "journal_pages": null,
+    "conference_title": null,
+    "conference_acronym": null,
+    "conference_date": null,
+    "conference_place": null,
+    "conference_url": null,
+    "journal_session": null,
+    "journal_session_part": null,
+    "imprint_publisher": null,
+    "imprint_isbn": null,
+    "imprint_place": null,
+    "partof_title": null,
+    "partof_pages": null,
+    "thesis_supervisors": null,
+    "thesis_university": null,
+    "method": ["For any details on th null value, please check https://developers.zenodo.org/?python#representation"]
+  }
+}

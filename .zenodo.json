@@ -1,11 +1,11 @@
 {
   "metadata": {
     "upload_type": "software",
-    "publication_date": "patata",
+    "publication_date": "1990-03-06",
     "title": "Im going to try to cheat you ;) ",
     "creators": [
       {"name": "Frita, Patata", "affiliation": "Jupyter"},
-      {"name": "M. Cheater", "affiliation": "Saturn", "orcid": "0000-0000-0000-0000"},
+      {"name": "M. Cheater", "affiliation": "Saturn"}
     ],
     "description": "Abstractract description of the deposit",
     "access_right": "open",
@@ -26,25 +26,24 @@
     "dates": [
       {"start": "2018-03-21", "end": "2018-03-25", "type": "Collected", "description": "Specimen A5 collection period."}
     ],
-    "related_identifiers": null,
-    "journal_title": null,
-    "journal_volumne": null,
-    "journal_issue": null,
-    "journal_pages": null,
-    "conference_title": null,
-    "conference_acronym": null,
-    "conference_date": null,
-    "conference_place": null,
-    "conference_url": null,
-    "journal_session": null,
-    "journal_session_part": null,
-    "imprint_publisher": null,
-    "imprint_isbn": null,
-    "imprint_place": null,
-    "partof_title": null,
-    "partof_pages": null,
-    "thesis_supervisors": null,
-    "thesis_university": null,
-    "method": ["For any details on th null value, please check https://developers.zenodo.org/?python#representation"]
+    "related_identifiers": "",
+    "journal_title": "",
+    "journal_volume": "",
+    "journal_issue": "",
+    "journal_pages": "",
+    "conference_title": "",
+    "conference_acronym": "",
+    "conference_dates": "2020-03-1",
+    "conference_place": "",
+    "conference_session": "",
+    "conference_session_part": "",
+    "imprint_publisher": "",
+    "imprint_isbn": "",
+    "imprint_place": "",
+    "partof_title": "",
+    "partof_pages": "",
+
+    "thesis_university": "",
+    "method": "For any details on the (empty) value, please check https://developers.zenodo.org/?python#representation"
   }
 }

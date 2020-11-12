@@ -44,7 +44,7 @@ class ZenodoAPI:
         headers = {"Content-Type": "application/json"}
         parameters = {'access_token': self.access_token}
 
-        return requests.post(url, headers=headers, params=parameters)
+        return requests.post(url, json={}, headers=headers, params=parameters)
 
     def upload_file_entry(self, entry_id, name_file, path_file):
         """

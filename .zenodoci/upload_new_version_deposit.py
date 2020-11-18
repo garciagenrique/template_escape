@@ -87,4 +87,4 @@ if __name__ == '__main__':
     print("New version of the old deposition correctly published !")
     print(f"Old deposition id {args.deposit_id}, new deposition id {new_deposition_id}")
     print(f"The new doi should look like 10.5281/{new_deposition_id}. However please")
-    print(f" ** Check the upload at {z.zenodo_api_url[:-4]}deposit/{new_deposition_id}  **")
+    print(f" ** Check the upload at {z.zenodo_api_url[:-4]}/deposit/{new_deposition_id}  **")

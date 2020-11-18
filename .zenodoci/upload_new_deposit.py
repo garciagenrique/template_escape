@@ -74,4 +74,4 @@ if __name__ == '__main__':
 
     print("New deposit correctly published !")
     print(f"The new doi should look like 10.5281/{deposition_id}. However please")
-    print(f" ** Check the upload at {z.zenodo_api_url[:-4]}deposit/{deposition_id}  **")
+    print(f" ** Check the upload at {z.zenodo_api_url[:-4]}/deposit/{deposition_id}  **")

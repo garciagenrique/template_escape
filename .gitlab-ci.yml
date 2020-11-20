@@ -1,5 +1,6 @@
 stages:
  - test
+ - testContainer
  - build
  - deploy
 
@@ -14,6 +15,15 @@ build_test_project:
       - conda activate escape_template
       - python setup.py install
       - pytest .
+
+test_docker_registry:
+    stage: testContainer
+    image: gitlab-registry.in2p3.fr/escape2020/wp3/template_project_escape/escape_template_project:v1.0
+    script:
+      - source activate escape_template
+      - square_number -i -12.5
+    only:
+      - tags
 
 build_image:
     stage: build

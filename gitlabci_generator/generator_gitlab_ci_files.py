@@ -2,6 +2,7 @@
 import sys
 import yaml
 import os.path
+from pathlib import Path
 from distutils.util import strtobool
 
 
@@ -86,19 +87,9 @@ class FillCiScript:
             "\n",
             f"    - export REPOSITORY_NAME={self.repository_info['name']}\n",
             f"    - export REPOSITORY_BASE_URL={self.repository_info['base_url']}$REPOSITORY_NAME\n",
-            """    - export LAST_RELEASE=`git ls-remote --tags --refs --sort="v:refname" $REPOSITORY_BASE_URL.git | tail -n1 | sed 's/.*\///'`\n""",
             "\n",
             "    - mkdir -p build\n",
-            "    - >\n",
-            '      if [ -z "$LAST_RELEASE" ]; then\n',
-            '        echo "No tag / new release found ! - Or error when parsing. Downloading last commit to the repository (master branch) ;"; \ \n',
-            '        wget -O $REPOSITORY_NAME-master.zip "REPOSITORY_BASE_URL"/-/archive/master/"$REPOSITORY_NAME"-master.zip; \ \n',
-            '        mv $REPOSITORY_NAME-master.zip ./build\n',
-            "      else\n",
-            '        echo "$LAST_RELEASE tag / release found !"; \ \n',
-            '        wget -O $REPOSITORY_NAME-$LAST_RELEASE.zip "REPOSITORY_BASE_URL"/-/archive/"$LAST_RELEASE"/"$REPOSITORY_NAME"-"$LAST_RELEASE".zip; \ \n',
-            '        mv $REPOSITORY_NAME-$LAST_RELEASE.zip ./build\n',
-            "      fi\n",
+            "    - /bin/bash .zenodoci/parse_last_release.sh $REPOSITORY_NAME $REPOSITORY_URL\n",
             "\n",
             "    - ls ./build\n",
             "\n"
@@ -213,9 +204,9 @@ def query_continue(question, default="no"):
         return answer
 
 
-def read_ci_config_file(yaml_ci_config_file="./ci-config.yml"):
+def read_ci_config_file(yaml_ci_config_file):
     """
-    Paese the `ci-config.yml` yaml file into a dictionary
+    Pass the `ci-config.yml` yaml file into a dictionary
 
     :param yaml_ci_config_file: str
         yaml input file
@@ -227,16 +218,37 @@ def read_ci_config_file(yaml_ci_config_file="./ci-config.yml"):
     return config
 
 
+def find_root_directory():
+    """
+     Find root directory of the project. This library MUST be added to the root directory of the same, i.e., MUST be
+    a subdirectory of the root dir.
+
+    :return root_directory: str or Path
+        Path object with root directory
+    """
+    current_dir = os.path.abspath(os.path.dirname(__file__))
+    current_dir_name = current_dir.split('/')[-1]
+    root_directory = Path(str(current_dir.split(current_dir_name)[0]))
+
+    return root_directory
+
+
 if __name__ == '__main__':
-    if os.path.isfile("../.gitlab-ci.yml"):
+    root_proj_dir = find_root_directory()
+
+    # Filenames NOT to be changed
+    gitlabci_file = root_proj_dir / '.gitlab-ci.yml'
+    gitlabci_config_file = root_proj_dir / 'gitlabci_generator/ci-config.yml'
+
+    if gitlabci_file.exists():
         query_continue("\nThe `.gitlab.yml` file already exists. "
                        "If you continue you will overwrite the file.\nAre you sure ?")
 
     # Load config
-    ci_config_dict = read_ci_config_file()
+    ci_config_dict = read_ci_config_file(gitlabci_config_file)
 
     # Open output file & initialize class
-    out_file = open("../.gitlab-ci.yml", "w")
+    out_file = open(gitlabci_file, "w")
     ci_template = FillCiScript(ci_config_dict)
 
     # Format and dump stages

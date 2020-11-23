@@ -11,10 +11,10 @@ stages:
   - deploy
 
 repository_information:
-  # For an e.g; https://gitlab.in2p3.fr/escape2020/wp3/zenodoci
+  # For an e.g; https://gitlab.in2p3.fr/escape2020/wp3/template_project_escape
 
-  # name is just `zenodoci`
-  name: zenodoci
+  # name is just `template_project_escape`
+  name: template_project_escape
   # The FULL url just before the repo name
   base_url: https://gitlab.in2p3.fr/escape2020/wp3/
 

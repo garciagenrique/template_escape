@@ -35,12 +35,6 @@ build_image:
         - mkdir -p build && cp *.simg build
         - mkdir -p build && cp Singularity* build
 
-        # You can add any other sregistry push commands here, and specify a client
-        # (and make sure your define the encrypted environment credentials in gitlab
-        # to push to your storage locations of choice.
-        # Have a look at https://gitlab.com/singularityhub/gitlab-ci/-/blob/master/.gitlab-ci.yml. Ex:
-        #- /bin/bash build.sh --uri collection/container --cli registry Singularity
-
     artifacts:
         paths:
             - build/Singularity.simg
@@ -61,26 +55,16 @@ deploy_zenodo:
       ### python, pip and wget are already installed in the container
       #- cat /etc/os-release  # Debian GNU/Linux 10 (buster)
       #- pip3 --version       # pip 20.1.1
-      #- python3 --version    # 3.6.11 as th
+      #- python3 --version    # 3.6.11 as the tag of the image specifies
       - pip3 install requests
 
       ### 2 - Get the last tag/release of the repository
       - export REPOSITORY_NAME=template_project_escape
-      - export REPOSITORY_URL=https://gitlab.in2p3.fr/escape2020/wp3/$REPOSITORY_NAME.git
-      - export LAST_RELEASE=`git ls-remote --tags --refs --sort="v:refname" $REPOSITORY_URL | tail -n1 | sed 's/.*\///'`
+      - export REPOSITORY_URL=https://gitlab.in2p3.fr/escape2020/wp3/$REPOSITORY_NAME
 
       ### 3 - Download the repository and move it to the build directory
       - mkdir -p build
-      - >
-        if [ -z "$LAST_RELEASE" ]; then
-          echo "No tag / new release found ! - Or error when parsing. Downloading last commit to the repository (master branch) ;"; \
-          wget -O $REPOSITORY_NAME-master.zip https://gitlab.in2p3.fr/escape2020/wp3/"$REPOSITORY_NAME"/-/archive/master/"$REPOSITORY_NAME"-master.zip; \
-          mv $REPOSITORY_NAME-master.zip ./build
-        else
-          echo "$LAST_RELEASE tag / release found !"; \
-          wget -O $REPOSITORY_NAME-$LAST_RELEASE.zip https://gitlab.in2p3.fr/escape2020/wp3/"$REPOSITORY_NAME"/-/archive/"$LAST_RELEASE"/"$REPOSITORY_NAME"-"$LAST_RELEASE".zip; \
-          mv $REPOSITORY_NAME-$LAST_RELEASE.zip ./build
-        fi
+      - /bin/bash .zenodoci/parse_last_release.sh $REPOSITORY_NAME $REPOSITORY_URL
 
       - ls ./build
 
@@ -101,9 +85,8 @@ deploy_zenodo:
       ### 4 - To deploy a NEW VERSION to ZENODO: The deposit_id of the entry to be `new_versioned` MUST be provided.
       - >
         python3 .zenodoci/upload_new_version_deposit.py
-        --token $ZENODO_TOKEN
         --sandbox_zenodo False
-        --input-directory ./build
+        --token $ZENODO_TOKEN
         --deposit_id $DEPOSIT_ID_ESCAPE_TEMPLATE
 
     only:

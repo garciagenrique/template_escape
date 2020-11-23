@@ -1,0 +1,121 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "name": "ESCAPE template project",
+  "description": "A template repository for the ESCAPE project",
+  "keywords": "template",
+  "license": "https://spdx.org/licenses/GPL-3.0+",
+  "identifier": "10.5281/zenodo.3884963",
+  "softwareVersion": "v2.0",
+  "developmentStatus": "active",
+  "codeRepository": "https://gitlab.in2p3.fr/escape2020/wp3/template_project_escape",
+  "runtimePlatform": "Python >3.6",
+  "downloadUrl": "https://gitlab.in2p3.fr/escape2020/wp3/template_project_escape/-/archive/v2.0/template_project_escape-v2.0.tar.gz",
+  "fileSize": "39.3 kB",
+  "installUrl": "https://gitlab.in2p3.fr/escape2020/wp3/template_project_escape/-/blob/master/setup.py",
+  "releaseNotes": "Documentation and implementation of the last version for CI/CD to Zenodo",
+  "dateCreated": "2019-11-05",
+  "datePublished": "2019-12-12",
+  "dateModified": "2020-06-08",
+  "isAccessibleForFree": true,
+  "isPartOf": [
+    "https://gitlab.in2p3.fr/escape2020",
+    "https://projectescape.eu/"
+  ],
+  "contIntegration": "https://gitlab.in2p3.fr/escape2020/wp3/template_project_escape/-/pipelines",
+  "buildInstructions": "https://gitlab.in2p3.fr/escape2020/wp3/template_project_escape/-/blob/master/README.md",
+  "issueTracker": "https://gitlab.in2p3.fr/escape2020/wp3/template_project_escape/-/issues",
+  "readme": "https://gitlab.in2p3.fr/escape2020/wp3/template_project_escape/-/blob/master/README.md",
+  "programmingLanguage": [
+    {
+      "@type": "ComputerLanguage",
+      "name": "Python",
+      "url": "https://www.python.org/"
+    },
+    {
+      "@type": "ComputerLanguage",
+      "name": "Bash",
+      "url": "https://www.gnu.org/software/bash/"
+    }
+  ],
+  "softwareRequirements": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "numpy",
+      "name": "numpy",
+      "softwareVersion": "1.18.1"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "requests",
+      "name": "requests",
+      "softwareVersion": ">=3.6"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "pytest",
+      "name": "pytest",
+      "softwareVersion": ">=5.4.2"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "pyyaml",
+      "name": "pyyaml",
+      "softwareVersion": ">=5.3.1"
+    }
+  ],
+  "maintainer": {
+    "@type": "Person",
+    "@id": "https://orcid.org/0000-0003-2224-4594",
+    "givenName": "Enrique",
+    "familyName": "Garcia",
+    "email": "garcia@lapp.in2p3.fr",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "LAPP, CNRS"
+    }
+  },
+  "author": [
+    {
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0003-2224-4594",
+      "givenName": "Enrique",
+      "familyName": "Garcia",
+      "email": "garcia@lapp.in2p3.fr",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "LAPP, CNRS"
+      }
+    }
+  ],
+  "contributor": [
+    {
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0002-5686-2078",
+      "givenName": "Thomas",
+      "familyName": "Vuillaume",
+      "email": "vuillaume@lapp.in2p3.fr",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "LAPP, CNRS"
+      }
+    }
+  ],
+  "funder":[
+    {
+      "@type": "Organization",
+      "@id": "https://doi.org/10.13039/501100000780",
+      "name": "European Commission"
+    },
+    {
+      "@type": "Organization",
+      "name": "ESCAPE: European Science Cluster of Astronomy & Particle physics ESFRI research infrastructures",
+      "funder": {
+        "@type": "Organization",
+        "@id": "https://doi.org/10.13039/501100000780",
+        "name": "European Commission"
+      }
+    }
+  ],
+  "funding": "824064"
+}

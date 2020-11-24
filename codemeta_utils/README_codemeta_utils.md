@@ -1,11 +1,20 @@
+The source code contained in this folder is based on the [ESCAPE metadata template](
+https://gitlab.in2p3.fr/escape2020/wp3/escape_metadata_template) project.
+
+
 # ESCAPE metadata template
 
-In the ESCAPE project we will be following the ***CodeMeta*** project and schema to describe metadata.
+ESCAPE will be following the **CodeMeta** schema context to describe metadata.
+
+Create and incorporate a `codemeta.json` file to your project before uploading it to the ESCAPE repository.
+
+Comments are welcome. Open an issue here or [contact](mailto:vuillaume@lapp.in2p3.fr;garcia@lapp.in2p3.fr) the authors.
 
 ## Quickstart
 
  1. Go to the [CodeMeta generator](https://codemeta.github.io/codemeta-generator/). Create a `codemeta.json` file based on your library/repository.
     - Check in the same web application that the generate / your own file is valid !  
+    - Please for the moment restrict the list of keywords to the the ones that we propose (see below).
  2. Include the `codemeta.json` file in the root directory of your project.
  3. To automate the upload to the [ESCAPE repository](https://zenodo.org/communities/escape2020) through the GitLab-CI pipelines
     - Include the `.zenodoci` library in the root directory of your project.
@@ -25,7 +34,7 @@ to create a native Zenodo metadata file (`.zenodo.json`) from a `codemeta.json` 
 ````bash
 $ python codemeta_utils/codemeta_to_zenodo_json.py
 ````
- 3. In case of doubts or problems, please [contact us](mailto:garcia@lapp.in2p3.fr).
+ 3. In case of doubts or problems, please [contact us](mailto:vuillaume@lapp.in2p3.fr;garcia@lapp.in2p3.fr).
 
 
 ## Metadata schema templates
@@ -63,3 +72,27 @@ The `ZenodoCI` project contains a copy of the code in this library !
 This means that if you have already configured the GitLabCI pipeline together with the Zenodo repository, the CI 
 pipeline will take care of creating a `.zenodo.json` file automatically and incorporate it to the new upload/new 
 version to Zenodo.
+
+## Keywords list
+
+Please restrict the list of keywords within the `codemeta.json` file to the following.
+
+- CTA
+- LSST
+- LOFAR
+- SKA
+- EGO-Virgo
+- KM3NeT
+- ELT
+- EST
+- HL-LHC
+- FAIR
+- CERN
+- ESO
+- JIVE
+- VO
+- EOSC
+- ESO
+- Astronomy
+- Astroparticle physics
+- Particle physics

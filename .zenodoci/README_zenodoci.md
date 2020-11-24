@@ -4,6 +4,8 @@
 
 ## Continuous Deployment to Zenodo
 
+Library to manage an upload to Zenodo through its REST API.
+
 The source code contained in this folder is based on the [ZenodoCI](https://gitlab.in2p3.fr/escape2020/wp3/zenodoci) 
 project. The library was developed specifically to perform a deploy stage (to the Zenodo repository) in a GitLab CI 
 pipeline that **could be implemented in any external project**. 
@@ -18,12 +20,28 @@ The `deploy` stage in the CI pipeline (see the `.gitlab-ci.yml` file) will make 
  - Either upload the desired file(s) to the ESCAPE community in Zenodo.
  - Either upload a new version of an existing entry to Zenodo.
  
-The `repository_information.json` file must be filled up before pushing to the GitLab repository. This file will be 
-used to fill up the compulsory information that a Zenodo entry must contain. Also, depending on the case, the 
-corresponding python script (`upload_new_deposit.py` or `upload_new_version_of_deposit.py`) must be adapted and
- included into the `.gitlab-ci.yml` file with its corresponding arguments (examples are shown in the yml file).
+A `codemeta.json` metadata file (see below) **MUST BE ADDED** before uploading an entry to Zenodo or triggering the GitLabCI pipeline. 
+ 
+Also, depending on the case, the corresponding python script (`upload_new_deposit.py` or `upload_new_version_of_deposit.py`) 
+must be adapted and included into the `.gitlab-ci.yml` file with its corresponding arguments (examples are shown in the yml file). 
 
-### Zenodo token & GitLab CI environment variable
+#### **Use of new metadata context ! Please check the news !**
+
+    We are no longer supporting the use of a `repository_information.json` file to provide metadata to Zenodo.
+
+We are currently moving to a [CodeMeta metadata context](https://codemeta.github.io/).
+ This metadata standard provides a complete metadata schema context supported by many other services and search engines.   
+
+Adding a single `codemeta.json` file to the root directory of your project will be enough ! Please check out the
+[ESCAPE metadata template](https://gitlab.in2p3.fr/escape2020/wp3/escape_metadata_template) project for a _quickstart_ on
+how to easily create a `codemeta.json` file. 
+
+Last but not least ! Please note that during the CI pipeline the `.zenodoci` module will search for a `codemeta.json` file
+and will automatically create the equivalent file to provide metadata to the Zenodo repository. The `.zenodo.json` file
+will contain the exactly same information that in the `codemeta.json` file but using the Zenodo syntax. 
+
+
+## Zenodo token & GitLab CI environment variable
 
 To connect the GitLab repository with Zenodo in an autonomous way, a personal access token must be created. This token 
 is assigned to a **single** Zenodo account, and it will allow the interaction with
@@ -40,7 +58,7 @@ your personal token, you should create an environment variable in your GitLab re
 The environment variable will look like this:
 
 ```sh
-    $ python .zenodoci/upload_new_deposit.py -i build -t $ZENODO_TOKEN -s False
+    $ python .zenodoci/upload_new_deposit.py --input-directory build --token $ZENODO_TOKEN --sandbox_zenodo False
 ```
 
 ## License of the `template_project_repository`:

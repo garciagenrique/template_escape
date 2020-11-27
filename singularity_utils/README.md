@@ -1,4 +1,6 @@
-# Singularity container
+# README _singularity_utils_ library
+
+# Singularity containers
  
 This directory contains all what you need to create a singularity image of the current repository.
  

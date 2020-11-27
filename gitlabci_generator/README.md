@@ -1,3 +1,5 @@
+# README _gitlabci_generator_ library
+
 # `.gitlab-ci.yml` automatic generator
 
 ## 1 - Create the `.gitlab-ci.yml` file

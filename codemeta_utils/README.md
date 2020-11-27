@@ -1,3 +1,5 @@
+# README _codemeta_utils_ library
+
 The source code contained in this folder is based on the [ESCAPE metadata template](
 https://gitlab.in2p3.fr/escape2020/wp3/escape_metadata_template) project.
 

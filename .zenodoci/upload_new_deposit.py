@@ -1,4 +1,8 @@
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python
+
+# Enrique Garcia. Aug '20
+# email garcia 'at' lapp.in2p3.fr
+
 import os
 import json
 import argparse
@@ -26,8 +30,8 @@ def create_zenodo_metadata(metadata_filename):
     codemeta_file = 'codemeta.json'
 
     if codemeta_file in files_json and zenodo_metadata_filename not in files_json:
-        parse_codemeta_and_write_zenodo_metadata_file(codemeta_file, zenodo_metadata_filename)
         print(f"\nCreating {zenodo_metadata_filename} automatically at the CI pipeline.\n")
+        parse_codemeta_and_write_zenodo_metadata_file(codemeta_file, zenodo_metadata_filename)
 
     elif os.path.isfile(zenodo_metadata_filename):
         print(f"\n{zenodo_metadata_filename} metadata file found in the root directory of the library ! \n")
@@ -43,16 +47,16 @@ def create_zenodo_metadata(metadata_filename):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Upload new deposit entry to Zenodo")
 
-    # Required arguments
     parser.add_argument('--token', '-t', type=str,
                         dest='zenodo_token',
-                        help='Personal access token to (sandbox)Zenodo')
+                        help='Personal access token to (sandbox)Zenodo',
+                        required=True)
 
-    parser.add_argument('--sandbox_zenodo', '-s', action='store',
+    parser.add_argument('--sandbox', '-s', action='store',
                         type=lambda x: bool(strtobool(x)),
                         dest='sandbox_flag',
                         help='Set the Zenodo environment.'
-                             'If True connects with Zenodo. If False with Sanbox Zenodo',
+                             'If True connects with Zenodo. If False with Sandbox Zenodo',
                         default=False)
 
     parser.add_argument('--input-directory', '-i', type=str,
@@ -63,13 +67,13 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    z = ZenodoAPI(
+    zenodo = ZenodoAPI(
         access_token=args.zenodo_token,
         sandbox=args.sandbox_flag  # True for sandbox.zenodo.org !! False for zenodo.org
     )
 
     # 1 - create empty deposit
-    new_entry = z.create_new_entry()
+    new_entry = zenodo.create_new_entry()
 
     if new_entry.status_code < 399:
         deposition_id = new_entry.json()['id']
@@ -82,7 +86,7 @@ if __name__ == '__main__':
     for file in os.listdir(args.input_directory):
         full_path_file = args.input_directory + '/' + file
 
-        new_upload = z.upload_file_entry(
+        new_upload = zenodo.upload_file_entry(
             deposition_id,
             name_file=file,
             path_file=full_path_file
@@ -99,7 +103,7 @@ if __name__ == '__main__':
         entry_metadata = json.load(json_file)
 
     # entry_info['metadata']['doi'] = doi  # In the new version of the API the doi is updated automatically.
-    update_entry = z.update_info_entry(
+    update_entry = zenodo.update_metadata_entry(
         deposition_id,
         data=entry_metadata
     )
@@ -111,9 +115,9 @@ if __name__ == '__main__':
               update_entry.json())
 
     # 4 - publish entry - to publish the entry, uncomment the two lone below
-    # publish = z.publish_entry(deposition_id)
+    # publish = zenodo.publish_entry(deposition_id)
     # print(publish.json())
 
     print("New deposit correctly published !")
     print(f"The new doi should look like 10.5281/{deposition_id}. However please")
-    print(f" ** Check the upload at {z.zenodo_api_url[:-4]}/deposit/{deposition_id}  **")
+    print(f" ** Check the upload at {zenodo.zenodo_api_url[:-4]}/deposit/{deposition_id}  **")

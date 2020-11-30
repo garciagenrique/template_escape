@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python
 import sys
 import yaml
 import os.path
@@ -89,7 +89,7 @@ class FillCiScript:
             f"    - export REPOSITORY_BASE_URL={self.repository_info['base_url']}$REPOSITORY_NAME\n",
             "\n",
             "    - mkdir -p build\n",
-            "    - /bin/bash .zenodoci/parse_last_release.sh $REPOSITORY_NAME $REPOSITORY_URL\n",
+            "    - /bin/bash .zenodoci/parse_last_release.sh $REPOSITORY_NAME $REPOSITORY_BASE_URL\n",
             "\n",
             "    - ls ./build\n",
             "\n"
@@ -108,7 +108,7 @@ class FillCiScript:
                 "    - >\n",
                 "      python3 .zenodoci/upload_new_deposit.py\n",
                 "      --token $ZENODO_TOKEN\n",
-                "      --sandbox_zenodo False\n",
+                "      --sandbox False\n",
                 "      --input-directory ./build\n",
                 "\n"
             ]
@@ -118,7 +118,7 @@ class FillCiScript:
                 "    - >\n",
                 "      python3 .zenodoci/upload_new_version_deposit.py\n",
                 "      --token $ZENODO_TOKEN\n",
-                "      --sandbox_zenodo False\n",
+                "      --sandbox False\n",
                 "      --input-directory ./build\n",
                 "      --deposit_id $DEPOSIT_ID_ESCAPE_TEMPLATE\n",
                 "\n"
@@ -129,7 +129,7 @@ class FillCiScript:
                 "    - >\n",
                 "      python3 .zenodoci/upload_new_deposit.py\n",
                 "      --token $SANDBOX_ZENODO_TOKEN\n",
-                "      --sandbox_zenodo True\n",
+                "      --sandbox True\n",
                 "      --input-directory ./build\n",
                 "\n"
             ]
@@ -139,7 +139,7 @@ class FillCiScript:
                 "    - >\n",
                 "      python3 .zenodoci/upload_new_version_deposit.py\n",
                 "      --token $SANDBOX_ZENODO_TOKEN\n",
-                "      --sandbox_zenodo True\n",
+                "      --sandbox True\n",
                 "      --input-directory ./build\n",
                 "      --deposit_id $ZENODO_DEPOSIT_ID\n",
                 "\n"

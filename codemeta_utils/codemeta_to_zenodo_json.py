@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-#
+#!/usr/bin/env python
+
 # Enrique Garcia. Nov 2020.
 # email: garcia 'at' lapp.in2p3.fr
 
@@ -160,7 +160,7 @@ def find_matching_metadata(codemeta_json):
             metadata_zenodo['keywords'] = [codemeta_json['keywords']]
 
     if 'license' in codemeta_json:
-        metadata_zenodo['license'] = codemeta_json['license'].split('/')[-1]  # TODO to be improved
+        metadata_zenodo['license'] = codemeta_json['license'].split('/')[-1]
     if 'releaseNotes' in codemeta_json:
         metadata_zenodo['notes'] = "Release Notes: " + codemeta_json['releaseNotes']
     if 'citation' in codemeta_json:

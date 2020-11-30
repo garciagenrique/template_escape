@@ -72,20 +72,20 @@ deploy_zenodo:
       #- >
       #  python3 .zenodoci/upload_new_deposit.py
       #  --token $SANDBOX_ZENODO_TOKEN
-      #  --sandbox_zenodo True
+      #  --sandbox True
       #  --input-directory ./build
 
       ### 4 - To deploy a NEW DEPOSIT to ZENODO
       #- >
       #    python3 .zenodoci/upload_new_deposit.py
       #    --token $ZENODO_TOKEN
-      #    --sandbox_zenodo False
+      #    --sandbox False
       #    --input-directory ./build
 
       ### 4 - To deploy a NEW VERSION to ZENODO: The deposit_id of the entry to be `new_versioned` MUST be provided.
       - >
         python3 .zenodoci/upload_new_version_deposit.py
-        --sandbox_zenodo False
+        --sandbox False
         --token $ZENODO_TOKEN
         --deposit_id $DEPOSIT_ID_ESCAPE_TEMPLATE
 

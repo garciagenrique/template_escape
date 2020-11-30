@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+
+# E. Garcia Nov 20
+# email: garcia 'at' lapp.in2p3.fr
+
 import os
 import sys
 import json
@@ -31,7 +36,8 @@ def parse_person_schema_property(person_property, contributor_field):
     zenodo_person['name'] = name
 
     if "@id" in person_property:
-        if 'orcid.org/' in person_property["@id"]:   # "https://orcid.org/0000-0002-5686-2078" format not accepted
+        if 'orcid.org/' in person_property["@id"]:
+            # "https://orcid.org/0000-0002-5686-2078" codemeta format not accepted
             zenodo_person['orcid'] = person_property["@id"].split('orcid.org/')[-1]
         else:
             zenodo_person['orcid'] = person_property["@id"]
@@ -155,7 +161,7 @@ def find_matching_metadata(codemeta_json):
             metadata_zenodo['keywords'] = [codemeta_json['keywords']]
 
     if 'license' in codemeta_json:
-        metadata_zenodo['license'] = codemeta_json['license'].split('/')[-1]  # TODO to be improved
+        metadata_zenodo['license'] = codemeta_json['license'].split('/')[-1]
     if 'releaseNotes' in codemeta_json:
         metadata_zenodo['notes'] = "Release Notes: " + codemeta_json['releaseNotes']
     if 'citation' in codemeta_json:

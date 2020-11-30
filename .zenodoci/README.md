@@ -1,10 +1,22 @@
-# README _.zenodoci_ library
+# README _.zenodoci_
 
 **PLEASE HAVE A LOOK TO THE LICENSING SECTION BELOW BEFORE IMPLEMENTING ANY PART OF THIS CODE INTO YOURS !!**
 
-## Continuous Deployment to Zenodo
 
 Library to manage an upload to Zenodo through its REST API.
+
+
+## _Quickstart_
+
+1. Add a `codementa.json` file to your project.
+2. Create a token at (sandbox)zenodo and add it as a variable to your project (see below).
+3. **TEST** that you can communicate correctly with Zenodo. You will test and debug at the same time that all the 
+stages of the GitLabCI-Zenodo pipeline will work correctly.
+```bash
+$ python .zenodoci/test_connection_zenodo.py --token YOUR_ZENODO_TOKEN --sandbox False
+```
+
+## Continuous Deployment to Zenodo
 
 The source code contained in this folder is based on the [ZenodoCI](https://gitlab.in2p3.fr/escape2020/wp3/zenodoci) 
 project. The library was developed specifically to perform a deploy stage (to the Zenodo repository) in a GitLab CI 
@@ -12,8 +24,13 @@ pipeline that **could be implemented in any external project**.
   
 
 The library (composed of the scripts within the `.zenodoci` directory) provides a module to handle the upload of 
-specified file(s) to (sandbox)zenodo. Please **JUST** upload stable versions/releases of source code and/or image
+specified file(s) to the [ESCAPE2020 Zenodo community](https://zenodo.org/communities/escape2020/). Please **JUST** upload stable versions/releases of source code and/or image
  containers!
+ 
+ 
+A `codemeta.json` metadata file (see below) **MUST BE ADDED** before uploading an entry to Zenodo or triggering the
+ GitLabCI pipeline. 
+
 
 The `deploy` stage in the CI pipeline (see the `.gitlab-ci.yml` file) will make use of the `zenodoapi` library and
  the built Singularity container created in the previous CI stage (check the `.gitlabci` directory too) to:
@@ -58,7 +75,7 @@ your personal token, you should create an environment variable in your GitLab re
 The environment variable will look like this:
 
 ```sh
-    $ python .zenodoci/upload_new_deposit.py --input-directory build --token $ZENODO_TOKEN --sandbox_zenodo False
+    $ python .zenodoci/upload_new_deposit.py --input-directory build --token $ZENODO_TOKEN --sandbox False
 ```
 
 ## License of the `template_project_repository`:

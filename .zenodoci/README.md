@@ -6,17 +6,18 @@
 Library to manage an upload to Zenodo through its REST API.
 
 
-## _Quickstart_
+## _Quickstart_ - Test the full OSSR-CI and the communication to Zenodo 
 
 1. Add a `codementa.json` file to your project.
-2. Create a token at (sandbox)zenodo and add it as a variable to your project (see below).
+    - [CodeMeta generator](https://codemeta.github.io/codemeta-generator/).
+2. Create a token at (sandbox)zenodo and add it as a variable to your project (see [below](#zenodo-token-gitlab-ci-environment-variable)).
 3. **TEST** that you can communicate correctly with Zenodo. You will test and debug at the same time that all the 
 stages of the GitLabCI-Zenodo pipeline will work correctly.
 ```bash
 $ python .zenodoci/test_connection_zenodo.py --token YOUR_ZENODO_TOKEN --sandbox False
 ```
 
-## Continuous Deployment to Zenodo
+## Continuous Integration to Zenodo
 
 The source code contained in this folder is based on the [ZenodoCI](https://gitlab.in2p3.fr/escape2020/wp3/zenodoci) 
 project. The library was developed specifically to perform a deploy stage (to the Zenodo repository) in a GitLab CI 
@@ -24,7 +25,8 @@ pipeline that **could be implemented in any external project**.
   
 
 The library (composed of the scripts within the `.zenodoci` directory) provides a module to handle the upload of 
-specified file(s) to the [ESCAPE2020 Zenodo community](https://zenodo.org/communities/escape2020/). Please **JUST** upload stable versions/releases of source code and/or image
+specified file(s) to the [ESCAPE2020 Zenodo community](https://zenodo.org/communities/escape2020/). Please **JUST** 
+upload stable versions/releases of source code and/or image
  containers!
  
  
@@ -78,7 +80,10 @@ The environment variable will look like this:
     $ python .zenodoci/upload_new_deposit.py --input-directory build --token $ZENODO_TOKEN --sandbox False
 ```
 
-## License of the `template_project_repository`:
+-------------
+
+# License of the `template_project_repository`:
+
 The `template_project_repository` contains code from different projects. This 'mixing' can be done because:
  - Both 'parent' projects are Open Source.
  - None of the original licenses are copy-left.

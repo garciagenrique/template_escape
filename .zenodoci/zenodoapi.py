@@ -5,7 +5,6 @@
 
 import json
 import requests
-import numpy as np
 from utils_zenodoci import (find_root_directory,
                             parse_codemeta_and_write_zenodo_metadata_file
                             )
@@ -221,7 +220,7 @@ class ZenodoAPI:
         if zenodo_metadata_file.exists():
             print("\n * Found .zenodo.json file within the project !")
             self.exist_zenodo_metadata_file = True
-            self.path_codemeta_file = zenodo_metadata_file
+            self.path_zenodo_metadata_file = zenodo_metadata_file
         else:
             print("\n ! .zenodo.json file NOT found in the root directory of the  project !")
 
@@ -260,19 +259,17 @@ class ZenodoAPI:
             # 1 - Test connection
             print("Testing communication with Zenodo...")
             test_connection = self.fetch_user_entries()
-            try:
-                np.testing.assert_equal(test_connection.status_code, 200)
+            if test_connection.status_code == 200:
                 print("OK !")
-            except:
+            else:
                 print(test_connection.json())
 
             # 2 - Test new entry
             print("Testing the creation of a dummy entry to (sandbox)Zenodo...")
             new_entry = self.create_new_entry()
-            try:
-                np.testing.assert_equal(new_entry.status_code, 201)
+            if new_entry.status_code == 201:
                 print("OK !")
-            except:
+            else:
                 print(new_entry.json())
 
             # 3 - Test upload metadata
@@ -285,19 +282,17 @@ class ZenodoAPI:
             update_metadata = self.update_metadata_entry(test_entry_id,
                                                          data=metadata_entry
                                                          )
-            try:
-                np.testing.assert_equal(update_metadata.status_code, 200)
+            if update_metadata.status_code == 200:
                 print("OK !")
-            except:
+            else:
                 print(update_metadata.json())
 
             # 4 - Test delete entry
             print("Testing the deletion of the dummy entry...")
             delete_test_entry = self.erase_entry(test_entry_id)
-            try:
-                np.testing.assert_equal(delete_test_entry.status_code, 204)
+            if delete_test_entry.status_code == 204:
                 print("OK !")
-            except:
+            else:
                 print(delete_test_entry.json())
 
             print("\n\tYAY ! Successful testing of the connection to Zenodo ! \n\n"

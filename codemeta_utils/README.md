@@ -6,7 +6,7 @@ https://gitlab.in2p3.fr/escape2020/wp3/escape_metadata_template) project.
 
 # ESCAPE metadata template
 
-ESCAPE will be following the **CodeMeta** schema context to describe metadata.
+The OSSR will be following the **CodeMeta** schema context to describe metadata.
 
 Create and incorporate a `codemeta.json` file to your project before uploading it to the ESCAPE repository.
 
@@ -14,19 +14,21 @@ Comments are welcome. Open an issue here or [contact](mailto:vuillaume@lapp.in2p
 
 ## Quickstart
 
- 1. Go to the [CodeMeta generator](https://codemeta.github.io/codemeta-generator/). Create a `codemeta.json` file based on your library/repository.
-    - Check in the same web application that the generate / your own file is valid !  
+ 1. Go to the [CodeMeta generator](https://codemeta.github.io/codemeta-generator/). Create a `codemeta.json` file based on your library/project.
+    - Check - in the same web application - that the generated file is valid !  
     - Please for the moment restrict the list of keywords to the the ones that we propose (see below).
- 2. Include the `codemeta.json` file in the root directory of your project.
+ 2. Include the `codemeta.json` file in the **root directory** of your project.
  3. To automate the upload to the [ESCAPE repository](https://zenodo.org/communities/escape2020) through the GitLab-CI pipelines
-    - Include the `.zenodoci` library in the root directory of your project.
+    - Add the `ZenodoCI` library in the **root directory** of your project.
+    - Generate a `.zenodo.json` file (see below).
     - Configure the pipeline (Quikstart and tutorials [here](https://escape2020.pages.in2p3.fr/wp3/ossr-pages/page/repository/publish_in_repository/)).
     
+
 -----------------
 -----------------
  
  
-## Create a Zenodo metadata file from the CodeMeta schema
+## Create a Zenodo metadata file from the a CodeMeta schema file
 
 The zenodo repository does not accept codemeta metadata files yet. In the meanwhile, this library provides a simple tool
 to create a native Zenodo metadata file (`.zenodo.json`) from a `codemeta.json` file. To do so;

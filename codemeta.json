@@ -14,8 +14,8 @@
   "installUrl": "https://gitlab.in2p3.fr/escape2020/wp3/template_project_escape/-/blob/master/setup.py",
   "releaseNotes": "Automatise the building of Docker and Singularity in container/images in the CI. Cleaning of the repo to include all the new python modules that before were part of the project and contained different functionalities (.zenodoci, ci-generator...) ",
   "dateCreated": "2019-11-05",
-  "datePublished": "2019-12-12",
-  "dateModified": "2020-05-25",
+  "datePublished": "2021-05-25",
+  "dateModified": "2021-05-25",
   "isAccessibleForFree": true,
   "isPartOf": [
     "https://gitlab.in2p3.fr/escape2020",

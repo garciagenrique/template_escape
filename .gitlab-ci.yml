@@ -1,93 +1,95 @@
 stages:
+ - install
  - test
- - testContainer
  - build
  - deploy
 
-build_test_project:
-    stage: test
-    # Please notice that we are using a different image just for easier syntax in the testing of the building and
-    #  testing of the repository
-    image: continuumio/miniconda3:latest
-    script:
-      - . /opt/conda/etc/profile.d/conda.sh
-      - conda env create -f environment.yml
-      - conda activate escape_template
-      - python setup.py install
-      - pytest .
+install_project:
+  stage: install
+  # Please notice that we are using a different image just for easier syntax in the testing of the building and
+  #  testing of the repository
+  image: continuumio/miniconda3:latest
+  script:
+    - . /opt/conda/etc/profile.d/conda.sh
+    - conda env create -f environment.yml
+    - conda activate escape_template
+    - pip install .
+    - square_number -h
+    - square_number -i -12.5
+  only:
+    - branches
+
+test_project:
+  stage: test
+  image: python:3.6-buster
+  script:
+    - pip install pytest
+    - pip install .
+    - pytest .
+  only:
+    - branches
 
 test_docker_registry:
-    stage: testContainer
-    image: gitlab-registry.in2p3.fr/escape2020/wp3/template_project_escape/escape_template_project:v1.0
-    script:
-      - source activate escape_template
-      - square_number -i -12.5
-    only:
-      - tags
+  # Test of last container in registry
+  stage: test
+  image: gitlab-registry.in2p3.fr/escape2020/wp3/template_project_escape/escape_template_project:v1.0
+  script:
+    - source activate escape_template
+    - square_number -i -12.5
+  except:
+    - master
+    - tags
 
-build_image:
-    stage: build
-    image: singularityware/singularity:gitlab-2.6
-    script:
-        # Build the container!
-        - /bin/bash .gitlabci/build.sh Singularity
+build_singularity_image:
+  # Example of Singularity image (of the project) built during the CI
+  stage: build
+  image: singularityware/singularity:gitlab-2.6
+  script:
+    # Build the container!
+    - /bin/bash .singularityci/build.sh Singularity/Singularity
 
-        - mkdir -p build && cp *.simg build
-        - mkdir -p build && cp Singularity* build
+    - mkdir -p build && cp *.simg build
+    - mkdir -p build && cp Singularity* build
+  artifacts:
+    paths:
+      - build/Singularity.simg
+      - build/Singularity
+  only:
+    - tags
 
-    artifacts:
-        paths:
-            - build/Singularity.simg
-            - build/Singularity
-    only:
-      # - master
-      - tags
+build_docker_image:
+  # Example of Docker container (of the project) built - and uploaded to a registry - during the CI
+  stage: build
+  image: docker:19.03.12
+  services:
+    - docker:19.03.12-dind
+  before_script:
+    - cat /etc/os-release  # "Alpine Linux v3.12"
+    - apk add git
+    - export LAST_RELEASE=`git ls-remote --tags --refs --sort="v:refname" $CI_PROJECT_URL.git | tail -n1 | sed 's/.*\///'`
+    - echo $LAST_RELEASE
+  script:
+    - cd Docker
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker build -t $CI_REGISTRY_IMAGE:$LAST_RELEASE .
+    - docker push $CI_REGISTRY_IMAGE:$LAST_RELEASE
+  only:
+    - tags
 
 deploy_zenodo:
-    stage: deploy
-    image: python:3.6.11-buster
-    dependencies:
-      - build_image
-    script:
-      # 1 - Install dependencies in the image and upload the files to Zenodo
-      - apt-get -y update
+  stage: deploy
+  image: gitlab-registry.in2p3.fr/escape2020/wp3/zenodoci:v1.2
+  # The dependencies key is added to this stage ONLY because we have created in a previous stage some other artifacts
+  dependencies:
+    - build_singularity_image
+  before_script:
+    - test_connection_zenodo --token $ZENODO_TOKEN --sandbox False -p $CI_PROJECT_DIR
+  script:
+    - mkdir -p build
+    - parse_last_release_git.sh $CI_PROJECT_NAME $CI_PROJECT_URL
+    - if [[ -f ./codemeta.json ]]; then cp ./codemeta.json ./build; fi
+    - ls ./build
 
-      ### python, pip and wget are already installed in the container
-      #- cat /etc/os-release  # Debian GNU/Linux 10 (buster)
-      #- pip3 --version       # pip 20.1.1
-      #- python3 --version    # 3.6.11 as the tag of the image specifies
-      - pip3 install requests
-
-      ### 2 - Get the last tag/release of the repository
-      - export REPOSITORY_NAME=template_project_escape
-      - export REPOSITORY_URL=https://gitlab.in2p3.fr/escape2020/wp3/$REPOSITORY_NAME
-
-      ### 3 - Download the repository and move it to the build directory
-      - mkdir -p build
-      - /bin/bash .zenodoci/parse_last_release.sh $REPOSITORY_NAME $REPOSITORY_URL
-
-      - ls ./build
-
-      ### 4 - To deploy a NEW DEPOSIT to ZENODO SANDBOX
-      #- >
-      #  python3 .zenodoci/upload_new_deposit.py
-      #  --token $SANDBOX_ZENODO_TOKEN
-      #  --sandbox True
-      #  --input-directory ./build
-
-      ### 4 - To deploy a NEW DEPOSIT to ZENODO
-      #- >
-      #    python3 .zenodoci/upload_new_deposit.py
-      #    --token $ZENODO_TOKEN
-      #    --sandbox False
-      #    --input-directory ./build
-
-      ### 4 - To deploy a NEW VERSION to ZENODO: The deposit_id of the entry to be `new_versioned` MUST be provided.
-      - >
-        python3 .zenodoci/upload_new_version_deposit.py
-        --sandbox False
-        --token $ZENODO_TOKEN
-        --deposit_id $DEPOSIT_ID_ESCAPE_TEMPLATE
-
-    only:
-      - tags
+    - upload_new_version_deposit -t $ZENODO_TOKEN -s False -i ./build -id $ZENODO_PROJECT_ID
+  only:
+    - tags

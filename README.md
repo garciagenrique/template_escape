@@ -11,7 +11,7 @@ https://gitlab.in2p3.fr/escape2020/wp3/template_project_escape/-/commits/master)
 
 A simple template project to provide software to ESCAPE.
 
-The repository shows the **basic documentation** that should be included within the project (following the 
+This repository shows the **basic content** that should be included in a project (following the 
 [opensource guide](https://opensource.guide/starting-a-project/)):
 
 * An [open source](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository#where-does-the-license-live-on-my-repository)
@@ -32,56 +32,57 @@ It would be highly suitable to include too:
 **Please feel free to clone / fork / template this project!** (For example, look to left of the 
 `Clone or download` button in the [GitHub](https://github.com/garciagenrique/template_project_escape) site).
 
-# Contributing guidelines for the ESCAPE repository
-
-If you wish to provide software to the ESCAPE repository: 
-
- - Check the [ESCAPE repository's guidelines](https://gitlab.in2p3.fr/escape2020/wp3/guidelines).
-
- - All the code provided should be uploaded to the [Zenodo ESCAPE community](https://zenodo.org/communities/escape2020/). 
-
- - For a detailed explanation of how to submit a contribution to a project / repository (Fork, create a branch, make
-  a pull request...), please check the [opensource guide](https://opensource.guide/how-to-contribute/#how-to-submit-a-contribution) 
+  - For a detailed explanation of how to submit a contribution to a project / repository (Fork, create a branch, make
+  a pull request...), you can have a look to the [opensource guide](https://opensource.guide/how-to-contribute/#how-to-submit-a-contribution) 
   and/or the [git's documentation](https://git-scm.com/doc).
+  - Not that if you have login GitLab by using the `[Shibbolenth]` service (eduGAIN, Fédération d'Identités 
+  RENATER), you will need to [add a SSH key](https://gitlab.in2p3.fr/help/ssh/README#generating-a-new-ssh-key-pair) to 
+  your GitLab profile if you want to 'push' your changes to the server. 
 
-***PLEASE NOTE*** that if you have login GitLab by using the `[Shibbolenth]` service (eduGAIN, Fédération d'Identités 
-RENATER), you will need to [add a SSH key](https://gitlab.in2p3.fr/help/ssh/README#generating-a-new-ssh-key-pair) to 
-your GitLab profile if you want to 'push' your changes to the server. 
+# Contribute to the ESCAPE OSSR
+
+If you want to provide software to the ESCAPE repository: 
+
+ - Check the [ESCAPE OSSR guidelines](https://escape2020.pages.in2p3.fr/wp3/ossr-pages/page/contribute/contribute_ossr/).
+    - For ESCAPE members, follow the steps detailed in [the onboarding project](https://gitlab.in2p3.fr/escape2020/wp3/onboarding)
+    to finalise your contribution and the same onboarding process.
+
+ - All the code provided should be uploaded to the [Zenodo ESCAPE community](https://zenodo.org/communities/escape2020/).
+ 
+ - Check the following [tutorial on how to publish content in Zenodo](https://escape2020.pages.in2p3.fr/wp3/ossr-pages/page/contribute/publish_tutorial/). 
 
 # Singularity image container and CI/CD to Zenodo
 
-An example of how to; 
+A working example of how to; 
  1. create a Singularity image / container of your code, 
  2. make it available as a downloadable artifact within your project and 
  3. add it to the ESCAPE community in the [Zenodo repository](https://zenodo.org/communities/escape2020), 
  
-can be found in the `.gitlabci`, `.zenodoci` directories and in the `.gitlab-ci.yml` file. Please read carefully 
+can be found in the `.singularityci`, directory and in the `.gitlab-ci.yml` file. Please read carefully 
 all the README files.  
 
 For an easy example of how to create a Singularity receipt from scratch (and its corresponding container when executed),
 please have a look to the `singularity_utils` directory. 
 
-# Installation
+# Install
+Example of how to show installing instructions (and indeed the way to install this project).
 
 ```sh
   $ git clone https://gitlab.in2p3.fr/escape2020/wp3/template_project_escape.git
   $ cd template_project_escape
-  $ python setup.py install
+  $ pip install .
 ``` 
 
-This is an easy method to install the current project. 
-You can also check other more elaborated ways - generally for bigger repositories - here (e.g.,
- [cta-observatory/cta-lstchain](https://github.com/cta-observatory/cta-lstchain), 
- [cta-observatory/ctapipe](https://github.com/cta-observatory/ctapipe)).
-
 # Citing 
+Example of citing (as well as the DOI to cite this project),
+
 In case of citing this repository, use the following DOI:
  - v2.0 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3884963.svg)](https://doi.org/10.5281/zenodo.3884963)
 
 Do not forget to include your code / container into the [Zenodo ESCAPE community](https://zenodo.org/communities/escape2020/). 
  - ***Note that*** you will be able to assign a DOI in the moment you include your code/repository to Zenodo. 
  
-Please check the licenses of the code within in the `.gitlabci`, `.zenodoci` directories before adding this template 
+Please check the licenses of the code within in the `.singularityci` directory before adding this template 
 to your project.
 
 # Report an issue / Ask a question

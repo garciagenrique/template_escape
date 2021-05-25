@@ -48,8 +48,8 @@ build_singularity_image:
     # Build the container!
     - /bin/bash .singularityci/build.sh Singularity/Singularity
 
-    - mkdir -p build && cp *.simg build
-    - mkdir -p build && cp Singularity* build
+    - mkdir -p build && cp Singularity/*.simg build
+    - mkdir -p build && cp Singularity/Singularity* build
   artifacts:
     paths:
       - build/Singularity.simg

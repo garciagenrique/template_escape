@@ -1,7 +1,7 @@
 #!/bin/bash
 
-cp ../environment.yml environment.yml
-cp ../Singularity Singularity
+cp ../environment.yml .
+cp ../Singularity/Singularity .
 
 sudo singularity build escape_template.simg Singularity
 

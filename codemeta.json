@@ -2,21 +2,20 @@
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "name": "ESCAPE template project",
-  "description": "A template repository for the ESCAPE project",
-  "keywords": "template",
-  "license": "https://spdx.org/licenses/GPL-3.0+",
+  "description": "A template Git project for ESCAPE",
+  "keywords": ["ESCAPE"],
+  "license": "https://spdx.org/licenses/MIT",
   "identifier": "10.5281/zenodo.3884963",
-  "softwareVersion": "v2.0",
+  "softwareVersion": "v2.1",
   "developmentStatus": "active",
   "codeRepository": "https://gitlab.in2p3.fr/escape2020/wp3/template_project_escape",
   "runtimePlatform": "Python >3.6",
-  "downloadUrl": "https://gitlab.in2p3.fr/escape2020/wp3/template_project_escape/-/archive/v2.0/template_project_escape-v2.0.tar.gz",
-  "fileSize": "39.3 kB",
+  "downloadUrl": "https://gitlab.in2p3.fr/escape2020/wp3/template_project_escape/-/archive/v2.1/template_project_escape-v2.1.tar.gz",
   "installUrl": "https://gitlab.in2p3.fr/escape2020/wp3/template_project_escape/-/blob/master/setup.py",
-  "releaseNotes": "Documentation and implementation of the last version for CI/CD to Zenodo",
+  "releaseNotes": "Automatise the building of Docker and Singularity in container/images in the CI. Cleaning of the repo to include all the new python modules that before were part of the project and contained different functionalities (.zenodoci, ci-generator...) ",
   "dateCreated": "2019-11-05",
   "datePublished": "2019-12-12",
-  "dateModified": "2020-06-08",
+  "dateModified": "2020-05-25",
   "isAccessibleForFree": true,
   "isPartOf": [
     "https://gitlab.in2p3.fr/escape2020",
@@ -102,11 +101,6 @@
     }
   ],
   "funder":[
-    {
-      "@type": "Organization",
-      "@id": "https://doi.org/10.13039/501100000780",
-      "name": "European Commission"
-    },
     {
       "@type": "Organization",
       "name": "ESCAPE: European Science Cluster of Astronomy & Particle physics ESFRI research infrastructures",

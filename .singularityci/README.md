@@ -1,4 +1,4 @@
-# README _.gitlabci_ library
+# README _.singularityci_ module
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3834833.svg)](https://doi.org/10.5281/zenodo.3834833)
 
@@ -7,11 +7,11 @@
 ## Building Singularity Containers using the continuous integration in GitLab 
 
 The source code contained in this folder is based on the following 
-[GitLab-CI repository](https://gitlab.com/singularityhub/gitlab-ci). You can  find a very didactic **tutorial** of how 
+[GitLab-CI project](https://gitlab.com/singularityhub/gitlab-ci). You can  find a very didactic **tutorial** of how 
 to implement this code [here](https://vsoch.github.io/2018/gitlab-singularity-ci/).
 
 This software (composed of the files within this directory **AND** part of the the `.gitlab-ci.yml` file in the
-root directory - the `build_image` stage) provide the necessary tools to:
+root directory - the `build_singularity_image` stage) provide the necessary tools to:
  - Use a container image stored in the DockerHub site to create a Singularity container of your repository 
  (thus no need of having installed the Singularity source code), and upload it directly to your GitLab repository.
  - The Singularity recipe must be provided, of course.

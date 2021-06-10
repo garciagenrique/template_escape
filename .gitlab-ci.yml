@@ -75,12 +75,14 @@ build_docker_image:
     - docker push $CI_REGISTRY_IMAGE:$LAST_RELEASE
 
     # --> The following code snippet IS just an exploratory / WIP section
-    - docker save -o ESCAPE_template_project_$LAST_RELEASE.tar $CI_REGISTRY_IMAGE:$LAST_RELEASE
+    # Save docker image into a file to be uploaded in next stage
+    - docker save -o Docker_image_ESCAPE_template_project_$LAST_RELEASE.tar $CI_REGISTRY_IMAGE:$LAST_RELEASE
     - ls
     - cd .. && mkdir -p build && cp Docker/*.tar build
+    - ls build
   artifacts:
     paths:
-      - build/ESCAPE_template_project_*.tar
+      - build/Docker_image_ESCAPE_template_project_*.tar
   only:
     - tags
 

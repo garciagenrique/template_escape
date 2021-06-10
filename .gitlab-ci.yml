@@ -80,7 +80,7 @@ build_docker_image:
     - mkdir -p build && cp *.tar build
   artifacts:
     paths:
-      - build/ESCAPE_template_project_$LAST_RELEASE.tar
+      - build/ESCAPE_template_project_*.tar
   only:
     - tags
 

@@ -73,15 +73,23 @@ build_docker_image:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker build -t $CI_REGISTRY_IMAGE:$LAST_RELEASE .
     - docker push $CI_REGISTRY_IMAGE:$LAST_RELEASE
+
+    # --> The following code snippet IS just an exploratory / WIP section
+    - docker save -o ESCAPE_template_project_$LAST_RELEASE.tar $CI_REGISTRY_IMAGE:$LAST_RELEASE
+    - mkdir -p build && cp ESCAPE_template_project_$LAST_RELEASE.tar build
+  artifacts:
+    paths:
+      - build/ESCAPE_template_project_$LAST_RELEASE.tar
   only:
     - tags
 
 deploy_zenodo:
   stage: deploy
   image: gitlab-registry.in2p3.fr/escape2020/wp3/zenodoci:v1.2
-  # The dependencies key is added to this stage ONLY because we have created in a previous stage some other artifacts
+  # The `dependencies` key (and field) is added to this stage ONLY because we have created in a previous stage some other artifacts
   dependencies:
     - build_singularity_image
+    - build_docker_image
   before_script:
     - test_connection_zenodo --token $ZENODO_TOKEN --sandbox False -p $CI_PROJECT_DIR
   script:

@@ -1,5 +1,5 @@
 # template_project_escape 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4790629.svg)](https://doi.org/10.5281/zenodo.4790629) 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4923992.svg)](https://doi.org/10.5281/zenodo.4923992) 
 [![pipeline status](https://gitlab.in2p3.fr/escape2020/wp3/template_project_escape/badges/master/pipeline.svg)](
 https://gitlab.in2p3.fr/escape2020/wp3/template_project_escape/-/commits/master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
@@ -85,6 +85,7 @@ Example of how to show installing instructions (and indeed the way to install th
 Example of citing (as well as the DOI to cite this project),
 
 In case of citing this repository, use the following DOI:
+ - v2.2 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4923992.svg)](https://doi.org/10.5281/zenodo.4923992)
  - v2.1 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4790629.svg)](https://doi.org/10.5281/zenodo.4790629)
  - v2.0 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3884963.svg)](https://doi.org/10.5281/zenodo.3884963)
  - v1.1 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3743490.svg)](https://doi.org/10.5281/zenodo.3743490)

@@ -76,7 +76,7 @@ build_docker_image:
 
     # --> The following code snippet IS just an exploratory / WIP section
     - docker save -o ESCAPE_template_project_$LAST_RELEASE.tar $CI_REGISTRY_IMAGE:$LAST_RELEASE
-    - mkdir -p build && cp ESCAPE_template_project_$LAST_RELEASE.tar build
+    - mkdir -p build && cp "ESCAPE_template_project_${LAST_RELEASE}.tar" build
   artifacts:
     paths:
       - build/ESCAPE_template_project_$LAST_RELEASE.tar
